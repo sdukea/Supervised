@@ -111,3 +111,32 @@ def compute_model_output(x, w, b):
     
     return f_wb
 
+# plot output
+
+f_wb = compute_model_output(x_train, w, b)
+
+print(f_wb)
+
+# an array of 2 predictions done for each tr. eg in x_train (2 of them and only one feature) 
+# and corresp. y_train
+
+
+# values/data points/x_train and model prediction
+plt.plot(x_train, f_wb, c='b', label='Our prediction')
+
+# values/data points and actual labels
+
+plt.scatter(x_train, y_train, c='r', marker='x', label='Actual values')
+
+# can now trace errors here.
+
+plt.title('Housing prices')
+
+plt.xlabel('Size (1000 sq ft)')
+
+plt.ylabel('Price (1000s)')
+
+plt.legend()
+
+plt.show()
+
