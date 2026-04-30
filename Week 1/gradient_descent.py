@@ -57,6 +57,8 @@ def compute_gradient_terms(x, y, w, b):
     dj_dw = dj_dw / m
     dj_db = dj_db / m
 
+    return dj_dw, dj_db
+
 # returns the gradient terms to implement g.d.
 
 def gradient_descent(x, y, w_in, b_in, alpha, num_iters, cost_func, gradient_func):
@@ -93,9 +95,9 @@ def gradient_descent(x, y, w_in, b_in, alpha, num_iters, cost_func, gradient_fun
             # if the current iteration is one of the 10 intervals split and spaced from
             # the num of iterations (because we need it to print when it is only from the 10 intervals)
 
-            print(f"Iteration {i:4}: Cost {J_history[-1]:0.2e} ",
-                  f"dj_dw: {dj_dw: 0.3e}, dj_db: {dj_db: 0.3e}  ",
-                  f"w: {w: 0.3e}, b:{b: 0.5e}") 
+            print(f"Iteration {i}: Cost {J_history[-1]} ",
+                  f"dj_dw: {dj_dw}, dj_db: {dj_db}  ",
+                  f"w: {w}, b:{b}") 
     
     return w, b, J_history, p_history # return all these for graphing
 
@@ -115,3 +117,4 @@ w_final, b_final, J_hist, p_hist = gradient_descent(x_train, y_train, w_init, b_
                                                     iterations, compute_cost, compute_gradient_terms)
 
 print(w_final, b_final)
+
