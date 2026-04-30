@@ -80,7 +80,8 @@ print(f"w: {w}\nb: {b}")
 
 # compute f_wb
 
-# NOTE: x - the data set of input features - is just 1 feature and has two values/tr. eg./data points
+# NOTE: x - the data set of input features - is just 1 feature and has two values/tr. eg. is actually values
+# /data points.
 # so, x^(i)/x_i - a training example consisting of one value only - not a vector because
 # only one value - would be x-arrow-on-top-vector^(i)/x_i_vector instead
 
