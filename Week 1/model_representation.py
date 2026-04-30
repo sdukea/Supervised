@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 # plt.style.use('./deeplearning.mplstyle') 
 
 # problem: housing price prediction
-# - dataset is just two data points/training examples - will constitute our tr. set fully
+# - dataset is just two data points/training examples/values here - will constitute our tr. set fully
 # - unit of size: 1000 sq ft | unit of price: 1000s of $
 
 # 1 feature (size of house), 1 set of labels for that feature (price of house)
@@ -80,7 +80,7 @@ print(f"w: {w}\nb: {b}")
 
 # compute f_wb
 
-# NOTE: x - the data set of input features - is just 1 feature and has two values/tr. eg. is actually values
+# NOTE: x - the data set of input features - is just 1 feature and has two values/tr. eg. is just values
 # /data points.
 # so, x^(i)/x_i - a training example consisting of one value only - not a vector because
 # only one value - would be x-arrow-on-top-vector^(i)/x_i_vector instead
@@ -118,7 +118,8 @@ f_wb = compute_model_output(x_train, w, b)
 
 print(f_wb)
 
-# an array of 2 predictions done for each tr. eg in x_train (2 of them and only one feature) 
+# an array of 2 predictions done for each tr. eg (just values as we only have 1 feature -  multiple features
+# would make one tr. eg in MLR) in x_train (2 of them (values) and only one feature) 
 # and corresp. y_train
 
 

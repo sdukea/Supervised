@@ -99,4 +99,19 @@ def gradient_descent(x, y, w_in, b_in, alpha, num_iters, cost_func, gradient_fun
     
     return w, b, J_history, p_history # return all these for graphing
 
- 
+# initialize parameters
+
+w_init = 0
+b_init = 0
+
+# start with w and b by randomly guessing - yes
+# but w and b = 0 are usually what we start with
+
+iterations = 10000
+
+tmp_alpha = 1.0e-2
+
+w_final, b_final, J_hist, p_hist = gradient_descent(x_train, y_train, w_init, b_init, tmp_alpha,
+                                                    iterations, compute_cost, compute_gradient_terms)
+
+print(w_final, b_final)
