@@ -19,7 +19,7 @@ def compute_cost(x, y, w, b):
     for i in range(m):
         f_wb = w * x[i] + b
 
-        cost = (f_wb - y) ** 2
+        cost = (f_wb - y[i]) ** 2
 
         total_cost = total_cost + cost
 
