@@ -27,3 +27,4 @@ def compute_cost(x, y, w, b):
 
     return final_cost
 
+# returns final cost
