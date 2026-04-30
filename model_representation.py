@@ -72,7 +72,7 @@ plt.show()
 
 # let's set, for now,
 
-w = 100
+w = 100 # w = 200; perfect
 
 b = 100
 
@@ -139,4 +139,3 @@ plt.ylabel('Price (1000s)')
 plt.legend()
 
 plt.show()
-
