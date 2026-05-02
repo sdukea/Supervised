@@ -1,6 +1,7 @@
 # learn all about NumPy, its application on vectorizaton and all things related
 
 import numpy as np
+import time
 
 # vectors
 # - ordered array of numbers
@@ -76,7 +77,8 @@ a2 = np.array([
     [7, 8]
 ])
 
-# you have 2 sets of '[]' making up this array inherently and so its 2 dimensional
+# you have 2 sets of '[]' making up this array inherently and so its 2 dimensional -> tuple as argument
+# given also has 2 values -> the tuple is the 'shape' argument
 
 # (4,2,3); creates a 3D array as you know how it looks (4 blocks; each block has 2 rows and 3 columns)
 
@@ -101,6 +103,13 @@ a2 = x = np.array([
     ]
 ])
 
+# and so on; further blocking (a block's block's block's block('s) and so on) until 
+# we catch its rows and columns and continue
+
+# again, you have three sets of '[]' (color purple-pink is one, the blue is the second and
+# the yellow is the third one - hence its 3 dimensional -> you also gave the tuple with 3 values
+# -> the tuple is the 'shape' argument)
+
 a3 = np.random.random_sample(4)
 
 # all these creates a vector/array of length 4
@@ -110,6 +119,8 @@ a3 = np.random.random_sample(4)
 # creates an array of length 4 and each entry is a random number between 0 and 1
 
 # (some more)
+# NOTE: These take the 'shape' argument - the values inside - as seperate arguments and not 
+# inside a tuple
 
 a4 = np.arange(4)
 
@@ -141,4 +152,206 @@ print(a6.dtype)
 # - elements of vectors can be accessed via: indexing and slicing
 # - indexing: referring to an element of an array by its position
 # - slicing: getting a subset of elements from an array based on indexes/indices
+
+# indexing - 1-D array/vector
+
+a7 = np.arange(10)
+
+# shape of a7: (10,) - a 1-D array/vector
+
+# each value inside a 1-D array is a scalar value so
+
+# a7[2].shape will equal () - an empty shape (0 dimensional)
+
+print(a7[-1])
+
+# gives last element; you know it
+
+# indexes should be within the range of the vector - or else error
+
+# if for higher dimensions, say n, you have to give in n indexes to get that element
+
+# either like: a7[index,index,index,index,...] or a7[index][index][index]...
+
+# slicing
+
+a8 = np.arange(10)
+
+# a8[start:stop:step]
+
+#access 5 consecutive elements
+c = a8[2:7:1];     print("a[2:7:1] = ", c)
+
+# access 3 elements separated by two 
+c = a8[2:7:2];     print("a[2:7:2] = ", c)
+
+# access all elements index 3 and above
+c = a8[3:];        print("a[3:]    = ", c)
+
+# access all elements below index 3
+c = a8[:3];        print("a[:3]    = ", c)
+
+# access all elements
+c = a8[:];         print("a[:]     = ", c)
+
+# single vector operations
+
+a9 = np.array([1, 2, 3, 4])
+
+print(f"a             : {a9}")
+
+# negate elements of a
+b = -a9 
+print(f"b = -a        : {b}")
+
+# sum all elements of a, returns a scalar
+b = np.sum(a9) 
+print(f"b = np.sum(a) : {b}")
+
+b = np.mean(a9)
+print(f"b = np.mean(a): {b}")
+
+b = a9**2
+print(f"b = a**2      : {b}")
+
+# vector vector element wise operations 
+
+# NOTE: vector -> 1-D array (you know it already)
+
+x = np.array([1, 2, 3, 4])
+y = np.array([-1, -2, 3, 4])
+
+print(x + y)
+
+# adds each element of x and y together orderly
+
+# so: 1+ (-1), 2 + (-2), 3 + 3, 4 + 4
+
+# if both arrays are not of the same shape, then you cannot perform operations; you'd get value error.
+# cannot broadcast together two arrays with shape (4,) and (5,)
+
+# scalar vector operations
+
+z = np.array([1, 2, 3, 4])
+
+b = 5 * z
+
+print(b)
+
+# yes, each element of z is multiplied with 5; scalar-vector operation in action
+
+# vector vector dot product
+
+def my_dot(a, b):
+
+    # a: input vector
+    # b: input vector with same dimension as a (matching dimensions; if not ValueError)
+
+    # returns: x (scalar)
+
+    x = 0
+
+    for i in range(a.shape[0]):
+        # NOTE: you know that .shape gives you rows and columns i.e .shape[0] gives you rows
+        # in a 1-D array/vector, .shape is just (number of elements,)
+        # and .shape[0] gives you the NUMBER of elements (which is essentially the number of
+        # columns but you're fine - just get the fact that they give you the number of elements
+        # and we're iterating over each element)
+
+        x = x + a[i] * b[i]
+
+    return x
+
+# exactly like vectorization we saw; this method is OK and isn't as fast as using .dot(a, b)
+
+a = np.array([1, 2, 3, 4])
+b = np.array([5, 6, 7, 8])
+
+print(my_dot(a, b)) # answer: 70 (correct)
+
+# can also do:
+
+c = np.dot(a, b)
+
+print(c) # same answer: 70
+
+# need for speed: vector vs for loop
+
+# let's see if vectorization (using np.dot) or the for loop is faster
+
+np.random.seed(1) # every time you run generate random arrays, the set of randomized array values
+# will now be the same if the seed is set
+# any number is given inside; 42 is used because of a joke/reference
+# 1 will have a random sequence that is maintained and won't change for every run
+# 345913 will have a different random sequence but it is maintained and will not change for
+# every run
+
+a = np.random.rand(10000000)  
+b = np.random.rand(10000000)
+
+tic = time.time()  # capture start time
+c = np.dot(a, b)
+toc = time.time()  # capture end time
+
+print(f"np.dot(a, b) =  {c:.4f}")
+print(f"Vectorized version duration: {1000*(toc-tic):.4f} ms ")
+
+tic = time.time()  # capture start time
+c = my_dot(a,b)
+toc = time.time()  # capture end time
+
+print(f"my_dot(a, b) =  {c:.4f}")
+print(f"loop version duration: {1000*(toc-tic):.4f} ms ")
+
+del(a);del(b)  #remove these big arrays from memory
+
+# vectorized duration: 14 ms
+# for loop duration: 2628 ms
+
+# so use vectorized method - np.dot
+
+# vector vector operations on course 1
+
+# training examples will be stored in X_train of shape (m,n)
+# - m -> number of training examples/rows
+# - n -> number of features/columns
+# - its a 2-D array/matrix
+
+# - w -> a 1-D vector/array with shape (n,)
+#   represents our weights for each feature so
+#   has to be the size of the number of features (one w for one feature)
+#   so for n features, n weights and n weights only and that's it (1-D array is enough)
+# - will be looping through examples by indexing (i) to extract each example to work on individually
+# - X[i] will return a value of shape (n,) because
+#   as X is a 2-D array, each element in the array is a 1-D array (as 2-D arrays are made up of
+#   1-D arrays and the shape of the 1-D array was its columns essentially as we saw before and
+#   the number of columns represents the feature(s) n we have and so that's why the shape is
+#   (n,).)
+# - operations involving X[i] are often vector-vector
+
+# eg:
+
+X = np.array([[1], [2], [3], [4]])
+
+# actually like:
+
+X = np.array([
+    [1],
+    [2],
+    [3],
+    [4]
+])
+
+# single feature here, obviously and
+# 2D as we have two sets of '[]' - a purple-pink and blue one
+# and shape is (m/rows=4 and n/columns=1)
+
+# NOTE: for nD array, we will have n different values in the 'shape' tuple (...n)
+
+print(X.shape) # (4,1)
+
+print(X[1].shape) # (number of features,) = (1,)
+# as explained above
+
+# matrices
 
