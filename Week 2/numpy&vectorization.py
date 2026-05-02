@@ -66,6 +66,41 @@ a1 = np.zeros(4)
 
 a2 = np.zeros((4,)) # (4,) 1-D array with 4 elements in it
 
+# (4,2); creates a 2D array with 4 rows and 2 columns
+# same as doing (but all with zeros): 
+
+a2 = np.array([
+    [1, 2],
+    [3, 4],
+    [5, 6],
+    [7, 8]
+])
+
+# you have 2 sets of '[]' making up this array inherently and so its 2 dimensional
+
+# (4,2,3); creates a 3D array as you know how it looks (4 blocks; each block has 2 rows and 3 columns)
+
+# again, same as doing (but all with zeros):
+
+a2 = x = np.array([
+    [  # block 1
+        [1, 2, 3],
+        [4, 5, 6]
+    ],
+    [  # block 2
+        [7, 8, 9],
+        [10, 11, 12]
+    ],
+    [  # block 3
+        [13, 14, 15],
+        [16, 17, 18]
+    ],
+    [  # block 4
+        [19, 20, 21],
+        [22, 23, 24]
+    ]
+])
+
 a3 = np.random.random_sample(4)
 
 # all these creates a vector/array of length 4
@@ -100,4 +135,10 @@ a6 = np.array([6., 7, 8, 9, 10]) # *
 
 print(a6.dtype)
 # and so all become float and type of a6 is float64
+
+# operations on vectors
+
+# - elements of vectors can be accessed via: indexing and slicing
+# - indexing: referring to an element of an array by its position
+# - slicing: getting a subset of elements from an array based on indexes/indices
 
