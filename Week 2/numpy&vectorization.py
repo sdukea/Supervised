@@ -60,3 +60,44 @@ import numpy as np
 #   - Row 2 is 2 x row 1
 #   - and row 2 is dependent on row 1 - rank is only 1 here as row 2 is redundant
 
+# vector creation
+
+a1 = np.zeros(4)
+
+a2 = np.zeros((4,)) # (4,) 1-D array with 4 elements in it
+
+a3 = np.random.random_sample(4)
+
+# all these creates a vector/array of length 4
+
+# result: [0.0  0.0   0.0   0.0] for a1 and a2; all zeros
+# result: [0.1  0.91  0.23  0.32] for a3
+# creates an array of length 4 and each entry is a random number between 0 and 1
+
+# (some more)
+
+a4 = np.arange(4)
+
+# creates an array containing numbers from 0 to 3 (4 numbers)
+# so: [0.0  1.0   2.0   3.0]
+
+# .arange(start, stop, step)
+
+a4 = np.arange(2, 6, 2)
+
+# [2.0   4.0    6.0]
+
+
+# manually specifying values
+
+a5 = np.array([1, 2, 3, 4, 5])
+a6 = np.array([6., 7, 8, 9, 10]) # *
+
+# * all elements in an array should have the same datatype
+# because '6.' is a float, it upcasts all others to the safest common type - float
+
+# NOTE: there are 1-D arrays (rank 1)
+
+print(a6.dtype)
+# and so all become float and type of a6 is float64
+
