@@ -64,3 +64,28 @@ w_init = np.array([ 0.39133535, 18.75376741, -53.36032453, -26.42131618])
 
 # loading w and b that are already near optimal for demonstration 
 
+# model prediction
+
+# single prediction element by element
+
+def predict_single_loop(x, w, b):
+    
+    # x - vector - its a training example; a 1-D array with all our n feature values (n = 4)
+    # w - vector - for each feature value in the training example (X subscript 1, X subscript 2 ...)
+    # b - bias parameter
+
+    n = x.shape[0]
+
+    # as x is a training example 1D array, get the number of columns/features as the first parameter
+    # for a 1-D array will be the number of values/features/columns (n,)
+
+    pred = 0
+
+    for i in range(n): # for each of the feature values in a training example
+        pred_i = x[i] * w[i] # w1x1 = p1, w2x2 = p2, w3x3 = p3 and w[i]x[i] = p[i]
+        pred += pred_i # add to pred
+    
+    pred = pred + b # add bias and return it below
+    
+    return pred
+
