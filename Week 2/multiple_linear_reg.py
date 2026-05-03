@@ -72,6 +72,7 @@ def predict_single_loop(x, w, b):
     
     # x - vector - its a training example; a 1-D array with all our n feature values (n = 4)
     # w - vector - for each feature value in the training example (X subscript 1, X subscript 2 ...)
+    #              same size as 'x'
     # b - bias parameter
 
     n = x.shape[0]
@@ -87,5 +88,40 @@ def predict_single_loop(x, w, b):
     
     pred = pred + b # add bias and return it below
     
+    return pred # return a scalar prediction
+
+# we are predicting element by element i.e. w1x1, w2x2, w3x3, w4x4 sepearately and then adding b and
+# returning our prediction
+
+x_1 = X_train[0,:] # get a row/vector/1-D array/training example consisting of 4 feature values
+
+f_wb_x_1 = predict_single_loop(x_1, w_init, b_init) # prediction for just row 1/x superscript 1
+# consisting of x subscript 1 (feature value 1), x subscript 2 (feature value 2) and so on
+
+print(f_wb_x_1)
+
+# w_init -> exact same size as x_vector to match its feature values
+
+# NOTE: we are only predicting for one training example with multiple features
+# In SLR/ULR, we only had w1x1 + b type-shit and here we have w1x1, w2x2, w3x3 and so on + b only for
+# one row/training example
+
+# single prediction vector
+
+# using vectorization now to predict for a single row/training example again
+
+def predict(x, w, b):
+
+    pred = np.dot(x, w) + b
+    
     return pred
 
+# Done! Using just vectorization, its faster as well
+
+x_1 = X_train[0,:]
+
+f_wb_x_1 = predict(x_1, w_init, b_init)
+
+print(f_wb_x_1)
+
+# compute cost
