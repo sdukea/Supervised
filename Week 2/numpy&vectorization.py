@@ -355,3 +355,127 @@ print(X[1].shape) # (number of features,) = (1,)
 
 # matrices
 
+# - are 2-D arrays
+# - elements of a matrix are of the same type
+# - denoted with capital bolded letters (we just capitalize in code)
+# - we index them with a two dimensional index
+
+# - we use 2D matrices to hold data
+# - consisting of m tr. eg and n features and so
+# - X makes up a size of (m rows and n columns); exactly like how we know data looks like
+# - (rows as tr. eg and columns as seperate features)
+
+# matrix creation
+
+a = np.zeros((1, 5))                                       
+print(f"a shape = {a.shape}, a = {a}")                     
+
+a = np.zeros((2, 1))                                                                   
+print(f"a shape = {a.shape}, a = {a}") 
+
+a = np.random.random_sample((1, 1))  
+print(f"a shape = {a.shape}, a = {a}") 
+
+# all these, as you already know, are creation of arrays (vectors/matrices) that take the
+# shape as a tuple
+
+a = np.array([[5], [4], [3]]);   print(f" a shape = {a.shape}, np.array: a = {a}")
+a = np.array([[5],   
+              [4],   
+              [3]]); 
+print(f" a shape = {a.shape}, np.array: a = {a}")
+
+# you can create them seperately as well, as seen above
+
+# indexing
+
+a = np.arange(6).reshape(-1, 2) # create a matrix easily!
+
+# .reshape changes how your data is organized, without changing the data itself
+
+# so, you have: np.arange(6)
+
+# [0 1 2 3 4 5], and the shape is (6,)
+
+# now, you can reshape it into:
+
+# 1. (2,3) - makes it have 2 rows and 3 columns
+
+# [0 1 2]
+# [3 4 5]
+
+# .
+# .
+# .
+
+# and you get the point.
+
+# NOTE: The to-reshape shape tuple that you give in as the argument should be of the same
+# size as the array (matrix) that is getting reshaped
+
+# (2,3) -> rows x columns = 6 elements in total
+# exactly matches the number of elements we have in a
+
+# (-1, 2) -> figure out the number of rows automatically but I need 2 columns regardless
+
+# so, it first splits the data into two columns and then automatically arranges the rows so that it
+# accomodates correctly to our number of elements
+
+# so, 'a' is actually
+
+# [0 1]
+# [2 3]
+# [4 5]  # 2 columns and then rows are split automatically based on number of elements we have so
+         # that we accomodate all values in the 2 columns that is pre-set and how many so ever number
+         # of rows it takes: 6 / 2 = 3 rows
+
+# and you know how to index:
+
+# you specify either two '[]' each with an index (that does not exceed)
+ 
+# or
+
+# you specify one '[]' and you enter two values each corresponding to the index (that does not 
+# exceed) - FASTER
+
+# slicing
+
+a = np.arange(20).reshape(-1, 10)
+
+# split into 10 and figure out rows automatically such that we accomodate all 
+# values we have (20 of them)
+
+a[0, 2:7:1]
+
+# result: [2 3 4 5 6]
+
+# row 0/first item i.e. the first row in our case
+
+# columns/values from 2 to 6 with step = 1 (normal step)
+# - you are only able to do this because the next item that we're indexing further into the
+# matrix after item 0 our first index are all just values; item 0/row 0 is a 1-D array and inside the
+# 1-D array which our next index corresponds to is all just 0-D arrays or values and we can put an 
+# index to those values like 2:7:1 and get specific values out of it
+
+a[:, 2:7:1]
+
+# from all rows, and 2:7:1 index
+
+# result:
+
+# [
+#  [ 2  3  4  5  6]
+#  [12 13 14 15 16]
+# ]
+
+a[:,:]
+
+# all elements
+
+a[1,:]
+
+# all row 1 elements
+
+a[:,1]
+
+# all columns 1 elements
