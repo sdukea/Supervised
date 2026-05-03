@@ -91,7 +91,12 @@ def predict_single_loop(x, w, b):
     return pred # return a scalar prediction
 
 # we are predicting element by element i.e. w1x1, w2x2, w3x3, w4x4 sepearately and then adding b and
-# returning our prediction
+# returning our prediction because
+
+# f_wb_x_i is just the prediction for a single row vector as input x we give to predict is just a 
+# house with 4 features/vector with 4 values in it and only for this vector, we have a predicition
+
+# even our data X_train has, for each training example only, a specific target y
 
 x_1 = X_train[0,:] # get a row/vector/1-D array/training example consisting of 4 feature values
 
@@ -118,6 +123,33 @@ def predict(x, w, b):
 
 # Done! Using just vectorization, its faster as well
 
+# NOTE: prediction/target is given for each training example only as said above
+
+# so, the input x in real life of a house with 4 features is actually just a vector with 4 values
+# and only for this vector, we predict y hat
+
+# that's why we're training just a single training example to get our prediction
+
+# its w (vector) * x_i (vector; x is a matrix like X_train) + b
+
+# 'training' the model in MLR usually means finding the best 'w' and 'b'
+
+# such that the model's input is just a vector like what predict_by_loop and predict inputs
+
+# alongside the best choices for w and b
+
+# so that the model inputs the house with 4 feature values, combines it with best 'w' and 'b'
+
+# and outputs a prediction
+
+# NOTE: 'training' should usually include the training data (X_train), right? Yes!
+# Training the model (in MLR) - finding the best 'w' and 'b' via the cost function/G.D. and for these
+# implemenetations, we do use X_train (the 2-D dataset we have) fully, not just a vector - see beloe
+
+# NOTE: For predicting, we assume we already have w_init and b_init that we've we've got by training
+# using the entire X_train and y_train so that we can predict by just getting in 1 input vector of a 
+# house with 4 feature values and using those 'w' and 'b' to predict via the model in line 133.
+
 x_1 = X_train[0,:]
 
 f_wb_x_1 = predict(x_1, w_init, b_init)
@@ -125,3 +157,29 @@ f_wb_x_1 = predict(x_1, w_init, b_init)
 print(f_wb_x_1)
 
 # compute cost
+
+def compute_cost(X, y, w, b):
+
+    # returns cost: scalar
+
+    # takes in:
+    # X - entire data; the 2D array with (m,n) shape
+    # y - 1-D array/vector with all our targets of shape (m,) (for each of our training examples)
+    # w - initial w (vector) set of shape (n,)
+    # b - model bias
+
+    m = X.shape[0]
+
+    # now, we get in the number of rows/tr. eg as we have a matrix X here
+
+    cost = 0.0
+
+    for i in range(m):
+        f_wb_x_i = np.dot(X[i], w) + b
+
+        cost = cost + (f_wb_x_i - y[i])**2
+
+    cost = cost / (2 * m)
+
+    return cost
+
