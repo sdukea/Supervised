@@ -31,3 +31,14 @@ f_w,b(x^(i)) → model prediction for i-th example
                                             (Python: f_wb)
 
 """
+
+# same motivating (running) example: housing price prediction
+
+X_train = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
+y_train = np.array([460, 232, 178])
+
+# X_train is now a matrix/2D array consisting of 1-D arrays as its values where each 1-D array
+# is a training example/row with 4 values -> hence, we have 4 features
+# for each training example, we have 1 target
+# 3 training examples, each with 4 values/4 features and we have 3 targets for each tr.eg in y_train
+
