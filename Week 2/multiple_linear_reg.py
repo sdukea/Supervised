@@ -280,8 +280,9 @@ def compute_gradient_terms(X, y, w, b):
 
         # and so on for each training example
 
-        # so, each training example partially contributes to the 4 gradient terms in total we've
-        # got -- initially set by the first gradient term
+        # NOTE: so, each training example partially contributes to the 4 gradient terms in total we
+        # will be needing, wherein the 4 gradient terms (accomodating the 4 weights and hence the
+        # incoming 4 feature values in input vector) are initially set by the first gradient term
 
         # for dj_db term
 
@@ -291,4 +292,101 @@ def compute_gradient_terms(X, y, w, b):
     dj_db = dj_db / m 
 
     return dj_dw, dj_db
+
+
+tmp_dj_dw, tmp_dj_db = compute_gradient_terms(X_train, y_train, w_init, b_init)
+
+# got our gradient terms
+
+def gradient_descent(X, y, w_in, b_in, cost_func, gradient_terms_func, alpha, num_iters):
+
+    """
+    Performs batch gradient descent to learn w and b. Updates w and b by taking 
+    num_iters gradient steps with learning rate alpha
+    
+    Args:
+      X (ndarray (m,n))   : Data, m examples with n features
+      y (ndarray (m,))    : target values
+      w_in (ndarray (n,)) : initial model parameters  
+      b_in (scalar)       : initial model parameter
+      cost_function       : function to compute cost
+      gradient_function   : function to compute the gradient
+      alpha (float)       : Learning rate
+      num_iters (int)     : number of iterations to run gradient descent
+      
+    Returns:
+      w (ndarray (n,)) : Updated values of parameters 
+      b (scalar)       : Updated value of parameter 
+      """
+    
+    J_history = []
+
+    w = copy.deepcopy(w_in)
+    # to avoid modifying global w within function
+    # says "I want to work with 'w' but don't want to touch the original 'w_in'"
+    # using '=' is dangerous here because both w and 'w_in' become the same object
+
+    b = b_in # no issues here
+
+    for i in range(num_iters):
+
+        dj_dw, dj_db = gradient_terms_func(X, y, w, b)
+
+        # start updating
+        w = w - alpha * dj_dw
+        b = b - alpha * dj_db
+
+        # Save cost J at each iteration
+        if i < 100000: # prevent resource exhaustion
+            J_history.append(cost_func(X, y, w, b))
+        
+        # why to 'prevent resource exhaustion'?
+        """
+        Imagine:
+        1,000,000 iterations
+        You append every cost value
+
+        Now J_history has 1 million numbers.
+
+        That means:
+
+        more RAM usage
+        slower operations (especially plotting, debugging, etc.)
+        potential crash if it gets too big
+        """
+        # so, first 100k values should show trend clearly
+
+        # even if we keep iterating, let us only store a 100k values in J_history
+
+        # print iteration and cost every 10th iteration
+        if i% math.ceil(num_iters / 10) == 0:
+            print(f"Iteration {i:4d}: Cost {J_history[-1]:8.2f}   ")
+        
+    return w, b, J_history
+
+
+initial_w = np.zeros_like(w_init)
+# create an array with the exact same shape as w_init but with all zeros in it
+# this is the starting values for our 4 w terms we need - all zeros
+
+initial_b = 0
+# same starting value for b as well - 0
+
+iterations = 1000
+
+w_final, b_final, J_hist = gradient_descent(X_train, y_train, initial_w, initial_b, compute_cost,
+                                            compute_gradient_terms, alpha=5.0e-7, num_iters=iterations)
+
+# w_init was a set of w values we used for demonstration purposes
+# for finding the optimal values for w (4 of them) and b that minimizes the cost function J,
+# we start with all 4 w values to be 0 and b also 0 to then run G.D. and track cost and see
+# which set of w and be gives us the lowest possible J.
+
+m, _  = X_train.shape
+
+for i in range(m):
+    print(f"prediction: {np.dot(X_train[i], w_final) + b_final:0.2f}, target value: {y_train[i]}")
+
+# Since we've got the actually optimal w and b (which were set to all zeros first via initial_w and
+# initial_b), we can perform prediction.
 
