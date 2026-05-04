@@ -92,6 +92,68 @@ def zscore_normalize_features(X):
 
     X_norm = (X - mu) / sigma
 
+    # so, mu and sigma look like:
+    """
+    mu    = [μ₁, μ₂, μ₃, μ₄]
+    sigma = [σ₁, σ₂, σ₃, σ₄]
+    """
+
     return (X_norm, mu, sigma)
 
+# --- Compute statistics ---
+mu    = np.mean(X_train, axis=0)
+sigma = np.std(X_train, axis=0)
 
+# --- Transform data ---
+X_mean = X_train - mu
+X_norm = (X_train - mu) / sigma
+
+# visualization
+
+# --- Plot ---
+fig, ax = plt.subplots(1, 3, figsize=(12, 3))
+
+# 1. Unnormalized
+ax[0].scatter(X_train[:, 0], X_train[:, 3])
+ax[0].set_xlabel(X_features[0])
+ax[0].set_ylabel(X_features[3])
+ax[0].set_title("Unnormalized")
+ax[0].axis('equal')
+
+# 2. Mean-centered
+ax[1].scatter(X_mean[:, 0], X_mean[:, 3])
+ax[1].set_xlabel(X_features[0])
+ax[1].set_ylabel(X_features[3])
+ax[1].set_title("X - μ")
+ax[1].axis('equal')
+
+# 3. Z-score normalized
+ax[2].scatter(X_norm[:, 0], X_norm[:, 3])
+ax[2].set_xlabel(X_features[0])
+ax[2].set_ylabel(X_features[3])
+ax[2].set_title("Z-score normalized")
+ax[2].axis('equal')
+
+# --- Layout ---
+plt.tight_layout()
+fig.suptitle("Distribution of features before, during, after normalization")
+
+plt.show()
+
+# just plotting the before and after normalizing features and viewing their centres.
+
+# normalize the original features
+X_norm, X_mu, X_sigma = zscore_normalize_features(X_train)
+print(f"X_mu = {X_mu}, \nX_sigma = {X_sigma}")
+print(f"Peak to Peak range by column in Raw        X:{np.ptp(X_train,axis=0)}")   
+# you're printing the peak-to-peak value i.e. max - min of each column value/feature
+# for X_train alone, it is different for each column: 1252 for feature 1, 3 for feature 2,
+# 1 for feature 3 and 10 for feature 4
+print(f"Peak to Peak range by column in Normalized X:{np.ptp(X_norm,axis=0)}")
+# now, if you did max - min for every column value, you'd have them in the same range (almost very
+# similar to each other)
+# [2.45 2.41 2.12 2.45]
+
+# a lot of other visualizations that follows
+# all good - you're fine to move on
+# refer intership project code files for more on this - very well expounded there!
