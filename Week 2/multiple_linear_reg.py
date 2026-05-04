@@ -174,12 +174,121 @@ def compute_cost(X, y, w, b):
 
     cost = 0.0
 
-    for i in range(m):
-        f_wb_x_i = np.dot(X[i], w) + b
+    for i in range(m): # for each training example
+        f_wb_x_i = np.dot(X[i], w) + b # compute prediction for each training example
+        
+        # exactly what the predict_single_loop and predict (vectorized version) does
+
+        # takes in a vector training example - X[i] here - and compute prediction
 
         cost = cost + (f_wb_x_i - y[i])**2
 
+        # cost is actually for all training examples m
+
+        # so, for each training example, compute prediction as we did above
+
+        # subtract from actual target value to get error
+
+        # square it
+
+        # and add it to 'cost' variable.
+
+        # and do it for all training examples and add its cost to the 'cost' to get total
+
+        # un-averaged cost.
+
     cost = cost / (2 * m)
 
+    # divide total cost by 1 2m to get average cost
+
     return cost
+
+cost = compute_cost(X_train, y_train, w_init, b_init)
+
+print(f"Cost: {cost}")
+
+# gradient descent with multiple variables
+
+def compute_gradient_terms(X, y, w, b):
+
+    m, n = X.shape
+    # get both
+
+    dj_dw = np.zeros((n,))
+    # why?
+    # gradient term - measures the direction of the descent/slope and partially the size as well
+    # in ULR, we only had one w in our G.D. algorithm and if we could plot J(w,b), w and b
+
+    # but in MLR, we have n features and for each feature we have weights - so n weights as well
+    # and for G.D., we will have to descent (in the direction that leads to a valley) for all
+    # weights we have because the plot will be all w (w1 to wn), b and J(w(vector),b)
+
+    # we need updation for EACH w because G.D. needs to happen for all w1 to w2 and b simultaneously
+    # for it to reach a valley and hence, for each w, we need to compute gradient term specifying the
+    # direction it will need to take to reach valley as the plot is now made up of w1 to wn and b to
+    # illustrate J(w(vector), b)
+
+    dj_db = 0
+    
+    # set for accumulation
+
+    for i in range(m): # for each training example
+
+        # error = prediction - actual
+        error = (np.dot(X[i],w) + b) - y[i]
+        
+
+        # for dj_dw term
+
+        for j in range(n):
+
+            dj_dw[j] += error * X[i, j]
+        
+        # what's going on: 
+        # we're dealing with the gradient descent term + the multiplied x subscript n superscript (i)
+        # term as well
+
+        # this is how that gradient term should be read:
+        # from i = 1 to m i.e. for each training example -
+        # find error w.r.t. to actual target
+        # and for this training example (after finding the error),
+        # for each feature j = 1 to n this training example has,
+        # multiply error with each n feature value 
+        
+        # error for eg. 1 * x_1_(1) -- gives dj_dw_1 (dj_dw[0]) for w1 (w1_(1))
+        # error for eg. 1 * x_2_(1), -- gives dj_dw_2 (dj_dw[1]) for w2 (w2_(1))
+        # error for eg. 1 * x_3_(1), -- gives dj_dw_3 (dj_dw[2]) for w3 (w3_(1))
+        # error for eg. 1 * x_4_(1) -- gives dj_dw_4 (dj_dw[3]) for w4 (w4_(1))
+
+        # and so, for this training example (number (1)), we have 4 gradient terms
+        
+        # and each training example gives j = 1 to 4; 4 gradient terms and hence 4 weights 
+        # that we can compute with this need to account for the input vector that will have 4 features
+
+        # and now for the next training example,
+
+        # do all of the same and
+
+        # reupdate the gradient terms into dj_dw array i.e. 
+
+        # for the next training example (eg. 2):
+        
+        # error for eg. 2 * x_1_(2) -- add to dj_dw_1 (dj_dw[0]) for w1 (w1_(2))
+        # error for eg. 2 * x_2_(2), -- add to dj_dw_2 (dj_dw[1]) for w2 (w2_(2))
+        # error for eg. 2 * x_3_(2), -- add to dj_dw_3 (dj_dw[2]) for w3 (w3_(2))
+        # error for eg. 2 * x_4_(2) -- add to dj_dw_4 (dj_dw[3]) for w4 (w4_(2))
+
+        # and so on for each training example
+
+        # so, each training example partially contributes to the 4 gradient terms in total we've
+        # got -- initially set by the first gradient term
+
+        # for dj_db term
+
+        dj_db += error
+    
+    dj_dw = dj_dw / m                                
+    dj_db = dj_db / m 
+
+    return dj_dw, dj_db
 
