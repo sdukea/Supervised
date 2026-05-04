@@ -44,3 +44,54 @@ plt.show()
 
 # feature scaling
 
+# it is important to rescale features so that they have a similar range
+# saw three methods:
+# 1. feature scaling; dividing each feature value of that feature by its maximum value - good for when
+# you have a positve feature (all feat. values are positive) --> xnew = x / max
+# 0 to 1 scale (not centered in any way)
+# |
+# could also do: x - min / (max - min); applies for any feature
+# 0 to 1 scale again (not centered in any way at like 0.5 or something)
+
+# 2. mean normalization: x - mu / max - min
+# centered around 0
+# (x - mean) --> makes values above mean positive and values below mean negative
+# (max - min) --> tells you how wide the feature is; dividing it by it scales the data based 
+# on how spread out it is; you're saying shrink everything relative to how wide it is because dividing
+# by its range shrinks the data more appropriately 
+
+# 3. Z-score normalization:
+
+# will see now:
+
+def zscore_normalize_features(X):
+
+    """
+    computes  X, zcore normalized by column
+    
+    Args:
+      X (ndarray (m,n))     : input data, m examples, n features
+      
+    Returns:
+      X_norm (ndarray (m,n)): input normalized by column; the normalized dataset
+      mu (ndarray (n,))     : mean of each feature
+      sigma (ndarray (n,))  : standard deviation of each feature
+    """
+    mu = np.mean(X, axis=0)
+
+    # axis -- denotes the number of directions/axis when you plot or see the data
+    # axis=0 -- columns; calculate mean for each column/each feature
+    # axis=1 -- rows; calculate mean for each row
+    # that's it; axis=2 won't work as X is a 2D array and you only have 2 directions/axis
+
+    # mu is a 1-D array having the n mean valuesfor all n features in data X (2D data)
+
+    sigma = np.std(X, axis=0) # same, for all feature/column values
+
+    # sigma is also an array having n sigma values for all n features
+
+    X_norm = (X - mu) / sigma
+
+    return (X_norm, mu, sigma)
+
+
