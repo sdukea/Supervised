@@ -126,10 +126,17 @@ np.set_printoptions(precision=2)
 # - corresponding 'x' and yay – we have some data to use now (synthetic)
 # - yes, to simulate real world data, y = 1 + x^2 + ϵ (noise) could be used but we don't want to do 
 # - that now – we just want to create a noise-free world for now for easy demonstration and understanding
-# NOTE: This y = 1 + x^2 is the ground truth for the reverse-engineered data set we created only i.e.
-# - the output labels y that we create for some 'x' we also synthetically create
+# NOTE: This y = 1 + x^2 is the ground truth WE CREATED to reverse-create data set i.e.
+# - the output labels y that we created for some 'x' were synthetically reverse-created with our
+# - pre-made ground truth 
 # - this way of defining a rule first and then reverse-creating the data set that abides to this
 # - rule makes this ground truth function rule NOT generalize-able to unseen inputs
+# - because ground truth function is: the actual rule that generated the data you're working with
+# - so, DATA first and then GROUND TRUTH is adapted/realized/approximated to
+# - here, its GROUND TRUTH definition first and then DATA creation using it next
+# - either way, this function relates to the data set you're working with and so we can still
+# - call this ground truth even though we've taken the reverse way
+# - 
 
 
 # so, ground truth – continous, universal rule that exists for all seen/unseen input and what the output
