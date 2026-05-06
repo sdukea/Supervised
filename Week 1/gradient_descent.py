@@ -117,4 +117,3 @@ w_final, b_final, J_hist, p_hist = gradient_descent(x_train, y_train, w_init, b_
                                                     iterations, compute_cost, compute_gradient_terms)
 
 print(w_final, b_final)
-
