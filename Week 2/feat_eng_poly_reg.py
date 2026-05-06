@@ -65,7 +65,71 @@ np.set_printoptions(precision=2)
 # – affect 'y' the score
 # the scores are different because even though 'x' stays unchanged, 'x' and some other feature that we
 # don't know and haven't accounted for is changing and that affects the score
-# and this other, unaccounted for features are given by ϵ – the noise 
+# and this other, unaccounted for features are given by ϵ – the noise
+# |
+# so if y = f(x) + ϵ in the real world case, how is y = f(x) even relevant to talk about?
+# think of f(x) – the ground truth universal function – as the average or expected outcome for a 
+# given x; formally given by y = f(x) = E[y∣x] 
+# and our model y-hat tries to learn/approximate to f(x) and not f(x) + ϵ because
+# ϵ is random and cannot be learned; we know it will exist and bother us no matter what but it cannot
+# be learned in any way because it keeps on changing as there are infinitely many possible features/
+# variables that will affect 'y' and it is impossible to grab hold of all these variables no matter what
+# takeaway: the world is not perfectly predictable, your features don't capture everything, so outcome/ground truth 
+# (y) = signal (f(x)) + noise (ϵ) and model can only learn from signal
+# so y = f(x) + ϵ is the real world equation; when you collect data and you have features with associated
+# true output labels
+# y = f(x) -> the systematic part; what's predictable from 'x'
+# ϵ -> random part; not predictable by any means as there are infinitely many possible variables that
+# could undergo change and affect 'y' and we cannot account to grab hold of all these variables to 
+# estimate 'y'
+# so y = f(x) is relevant because it is the only part you can ever hope to learn
+# you can't learn ϵ:
+# - it's random
+# - changes every time
+# - not tied to 'x' in a consistent way (if so, it would be part of f(x) – the function)
+#   but still affects 'y'
+#   knowing 'x' does NOT let you predict ϵ in any way and its totally random
+#   if you know x = 5, you cannot predict if ϵ – totally existent and bothers us no matter what – will
+#   push y up or down
+#   if you knew what ϵ is, then that's not noise anymore – it'll be part of the function
+#   and the function knows how y will change when 'x' changes
+# |
+# let's talk about the output label 'y' now:
+# - for the same feature value/vector x, you might have different output labels
+#   so, when x = 5, y = 78, when x = 5 again (somewhere down the rows in data), y = 80 now and when
+#   x = 5 again after some while down in the data, y = 83 now
+#   so you understand this – ϵ affects what 'y' is because everything that affects 'y' but is not
+#   predictable from x is what ϵ is (noise)
+#   there are missing features/variables that are affecting y that we still haven't accounted for
+#   and x alone isn't predictive/deterministic of what 'y' is
+# - and this can totally happen – you will see for a single feature value/vector x, different set
+#   of possible values for 'y' because of ϵ noise
+
+# NOTE: To explain polynomial regression and the use of 'y' = 1 + x^2 here
+# - we use 'y = 1 + x^2' as the ground truth function to 
+# - produce/generate synthetic data to work with
+# - i.e. output labels for a given input/variable x that we have
+# - so we defined this universal rule just for the sake of demonstration
+# - and we generate data from it
+# - and we know what f(x) is exactly
+# - so y = 1 + x^2 is literally the true underlying relationship for the 'x' we have
+# - and the y we synthetically generated
+# - actually, y = f(x) stays unknown but here
+# - we don't have data of output labels and features x to be in a state where
+# - f(x) should stay unknown and we should actually model the relationship to generalize to new
+# - unseen data (make a new model that learns the ground truth function and generalize well)
+# - for demonstration purposes, we need some output labels and feature values 'x' because
+# - any way, the data that we get from the real world will have a ground truth function relating
+# - the features we have and the output labels associated (plus some ϵ)
+# - so we keep this idea true; we don't have 'x' or 'y' that relate to each other right now
+# - so why not create a rule that we can reverse-use to produce data of 'y' and we can create some
+# - corresponding 'x' and yay – we have some data to use now (synthetic)
+# - yes, to simulate real world data, y = 1 + x^2 + ϵ (noise) could be used but we don't want to do 
+# - that now – we just want to create a noise-free world for now for easy demonstration and understanding
+# NOTE: This y = 1 + x^2 is the ground truth for the reverse-engineered data set we created only i.e.
+# - the output labels y that we create for some 'x' we also synthetically create
+# - this way of defining a rule first and then reverse-creating the data set that abides to this
+# - rule makes this ground truth function rule NOT generalize-able to unseen inputs
 
 
 # so, ground truth – continous, universal rule that exists for all seen/unseen input and what the output
