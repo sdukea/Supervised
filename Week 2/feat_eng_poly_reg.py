@@ -6,7 +6,7 @@ In this lab you will:
 
 import numpy as np
 import matplotlib.pyplot as plt
-from lab_utils_multi import zscore_normalize_features, run_gradient_descent_feng
+# from lab_utils_multi import zscore_normalize_features, run_gradient_descent_feng
 
 np.set_printoptions(precision=2)
 
@@ -198,4 +198,100 @@ np.set_printoptions(precision=2)
 # wild predictions, and extreme sensitivity
 # so that's why scaling, regularization and lower-degree models are usually preferred
 
- 
+# create data
+x = np.arange(0, 20, 1)
+
+# create ground truth function and get true labels for created 'x'
+y = 1 + x**2
+# NOTE: if ground truth is used to produce data (reverse way), then that function automatically
+# becomes y-hat because parameters are considered already set and we assume it will generalize to new
+# data as well (if it has the same distribution as training data we created ourselves using the g.t.f
+# in our case here)
+
+X = x.reshape(-1, 1)
+# reshape into a 2D array
+# so X has shape (4,1) – a 2D array with just 1 column and 4 rows
+# 2D array is what traditional models accept and so even though our 'x' is 1D, we need that
+# data in the form of 2D 
+# will now look like:
+# [[1],
+#  [2],
+#  [3],
+#  ...]
+
+# let's see why a plain linear model fails to fit non-linear data
+
+# if you plot x and y, you see that you get a parabolic relationship between them
+
+# and if you train linear regression:
+
+"""
+model_w,model_b = run_gradient_descent_feng(
+    X, y,
+    iterations=1000,
+    alpha=1e-2
+)
+"""
+
+# and the model here only knows how to fit a straight line i.e
+# fitting to x that has a linear relationship with y
+
+# but here, you have a non-linear, quadratic relationship between 'x' and 'y'
+
+# and so a linear model built to fit linear relationships will not be able to fit our data with its
+# quadratic relationship here:
+
+plt.scatter(x, y, marker='x', c='r', label="Actual Value"); plt.title("no feature engineering")
+
+# plt.plot(x,X@model_w + model_b, label="Predicted Value")
+# plt.xlabel("X"); plt.ylabel("y"); plt.legend(); plt.show()
+
+# NOTE: X @ model_w -> matrix multiplication
+
+plt.show()
+
+# you see that x (X is 2D array of x) and y have a parabolic relation
+# but when you develop a linear model to learn quadratically related data
+# and after you learned the model to get model_w and model_b
+# and use that to predict values for each of the 'x' you have (just using training data again – not an issue as
+# we don't have a test set so for each tr. eg. we already have we're getting a prediction and plotting
+# it and joining all points together –> by joining all predictions for each tr. data we have (showing you error
+# as well evidently) we see that there are infinitely many possible feature values and predictions associated
+# because the graph, when you keep zooming in and seeing even more microscopically, it just keeps going on)
+
+# you see there is not a great fit – a straight line model for parabolic data
+# and there is high error – distance between actual values and predicted ones
+
+# so, what do you do:
+
+# you engineer features
+
+x = np.arange(0, 20, 1)
+
+y = 1 + x^2
+
+# same thing again
+
+X = x**2
+
+X = X.reshape(-1, 1)
+
+"""
+model_w,model_b = run_gradient_descent_feng(X, y, iterations=10000, alpha = 1e-5)
+"""
+
+"""
+plt.scatter(x, y, marker='x', c='r', label="Actual Value"); plt.title("Added x**2 feature")
+plt.plot(x, np.dot(X,model_w) + model_b, label="Predicted Value"); plt.xlabel("x"); plt.ylabel("y"); plt.legend(); plt.show()
+"""
+
+# NOTE: np.dot() can also be used for matrix multiplication
+
+# now when you plot predictions for each training data/example, its a near perfect fit
+
+# its still linear regression only – we have linear weights till now
+# model_w are all linear values, not exponentiated
+
+# its just that we engineer features
+
+# ––––
