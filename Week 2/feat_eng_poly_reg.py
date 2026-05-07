@@ -295,3 +295,61 @@ plt.plot(x, np.dot(X,model_w) + model_b, label="Predicted Value"); plt.xlabel("x
 # its just that we engineer features
 
 # ––––
+
+# now in the above example, we know that x^2 was required.
+# sometimes it may not always be obvious as to which features are required i.e. which exponentiation
+# will be required
+# we could do: adding in potential features that are exponentiated and finding the most useful
+
+x = np.arange(0, 20, 1)
+
+y = x**2
+
+# let this be our ground truth
+
+X = np.c_[x, x**2, x**3]
+
+# c_ -> concatenate arrays column wise
+
+# so if x = [1 2 3]
+"""
+X = [
+     [1, 1,  1],
+     [2, 4,  8],
+     [3, 9, 27]
+]
+"""
+
+# each column is what np.c_ gets in '[]'
+# X is still a 2D array
+
+"""
+model_w,model_b = run_gradient_descent_feng(X, y, iterations=10000, alpha=1e-7)
+
+plt.scatter(x, y, marker='x', c='r', label="Actual Value"); plt.title("x, x**2, x**3 features")
+plt.plot(x, X@model_w + model_b, label="Predicted Value")
+plt.xlabel("x"); plt.ylabel("y"); plt.legend(); plt.show()
+"""
+
+# now if you did the above to scatter 'x' and 'y' with a parabolic relation and then plot x (tr. set but we
+# use it for evaluation) and model prediction trained on engineered features x, x^2 and x^3 to get model_w – a 
+# vector of three values for each feature (x, x^2 and x^3) – and model_b
+
+# you see that the model will be something like:
+# 0.08x + 0.54x^2 + 0.03x^3 + 0.0106
+# ^ w1    ^ w2      ^ w3
+
+# by getting the weights for each feature, as you know:
+
+# the higher the weight associated for a feature, the larger the importance of that feature
+# because higher w, small change in x, large change in y, high sensitivity and great feature to look at
+# and so gradient descent offers us a way to see which features are emphasized by the weights they are associated
+# with
+# and in our case, the most useful feature is x^2 as it has the highest weight
+# NOTE: running G.D. for a longer time will show that the weights associated for x and x^3 will reduce and hence
+# the impact of these features will be lowered and not needed and more importance will be given for x^2 and
+# the weight will increase for this
+
+# NOTE: the scale/range of features here should be same or else you wouldn't be able to know the exact
+# magnitude of weights and cannot infer
+
