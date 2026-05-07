@@ -116,7 +116,7 @@ np.set_printoptions(precision=2)
 # - and the y we synthetically generated
 # - actually, y = f(x) stays unknown but here
 # - we don't have data of output labels and features x to be in a state where
-# - f(x) should stay unknown and we should actually model the relationship to generalize to new
+# - f(x) should stay unknown and wherein we should actually model the relationship to generalize to new
 # - unseen data (make a new model that learns the ground truth function and generalize well)
 # - for demonstration purposes, we need some output labels and feature values 'x' because
 # - any way, the data that we get from the real world will have a ground truth function relating
@@ -128,15 +128,24 @@ np.set_printoptions(precision=2)
 # - that now – we just want to create a noise-free world for now for easy demonstration and understanding
 # NOTE: This y = 1 + x^2 is the ground truth WE CREATED to reverse-create data set i.e.
 # - the output labels y that we created for some 'x' were synthetically reverse-created with our
-# - pre-made ground truth 
+# - pre-made ground truth; NOTE: but still a ground truth -> actual rule that produced data we have
+# - regardless the way we did that (reverse-created or inferred/realized/approximated to from data we got
+# first of features and output labels)
 # - this way of defining a rule first and then reverse-creating the data set that abides to this
-# - rule makes this ground truth function rule NOT generalize-able to unseen inputs
+# - rule makes this ground truth function rule generalize-able to unseen inputs as well, unless and until
+# - the future, unseen data (not in training set we had/created) follows the same underlying process or
+# - distribution as the training data we had/created
 # - because ground truth function is: the actual rule that generated the data you're working with
 # - so, DATA first and then GROUND TRUTH is adapted/realized/approximated to
 # - here, its GROUND TRUTH definition first and then DATA creation using it next
-# - either way, this function relates to the data set you're working with and so we can still
-# - call this ground truth even though we've taken the reverse way
-# - 
+# - either way, this function relates to the data set you're working with (some 'x' and created
+# - 'y' using this ground truth - the reverse way) and so we can still call this ground truth even 
+# - though we've taken the reverse way
+# - even though you might think this is the ground truth function for this simulation/demonstration and
+# - not generalizable to new data, this is not the case
+# - this new rule will still generalize to new unseen data wherein this unseen data should have a 
+# - similar distribution to that of the training data we had/created and which the ground truth function 
+# - relates to (the 'x' we had/created and 'y' we had/created)
 
 
 # so, ground truth – continous, universal rule that exists for all seen/unseen input and what the output
@@ -146,8 +155,6 @@ np.set_printoptions(precision=2)
 # will try to approximate to this ground truth function, but it may fail
 # in reality, not enough data, noise and bad modelling will result in only close approximations#
 # but the goal is always: y-hat (model) ≈ f(x)
-
-#
 
 # 2. y_train
 # as mentioned just eariler in 1.
@@ -159,5 +166,36 @@ np.set_printoptions(precision=2)
 # - your model returns y-hat for each training example
 
 # in P.L.R.
-# – your model is; for one input feature x and degree d
-# - 
+# – feature engineering changes what a linear model fits/can represent
+# - the normal w1x (or wx) + b linear model has a
+# 1. constant slope
+# 2. straight line relationship
+# 3. every increase in x changes y by the same amount
+
+# but real world relationships are often curved
+# eg. temp vs energy, speed vs fuel efficiency, population growth and so on
+# |
+# so instead of changing the learning algo. (linear regression), we just change the
+# features
+
+# we transform our original features 'x' into
+# x^2, x^3, ....
+
+# and you learn weights for these TRANSFORMED features
+
+# so model becomes: y = w1x + w2x^2 + w3x^3 + ...
+
+# why still linear regression: model is non-linear in x (powers increase and model is quadratic, cubic
+# and so on) but linear in weights
+# weights don't have power – they aren't multiplied together or exponentiated
+
+# so, its actually polynomial linear regression
+
+# higher degrees polyomials, more flexible shapes, more the ability to fit complex data, 
+# and more danger of overfitting
+
+# NOTE: huge feature value magnitudes as a result of squaring, cubing will create unstable gradients,
+# wild predictions, and extreme sensitivity
+# so that's why scaling, regularization and lower-degree models are usually preferred
+
+ 
