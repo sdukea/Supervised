@@ -430,3 +430,7 @@ model_w,model_b = run_gradient_descent_feng(X, y, iterations=1000000, alpha = 1e
 
 plt.scatter(x, y, marker='x', c='r', label="Actual Value"); plt.title("Normalized x x**2, x**3 feature")
 plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.ylabel("y"); plt.legend(); plt.show()
+
+# NOTE:
+# relationship between x and y = x^2 --> non-linear/quadratic
+# so we engineer features ot make features and trg
