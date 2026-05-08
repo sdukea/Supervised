@@ -388,3 +388,45 @@ plt.show()
 
 # So poly. reg is feature engineering and just ordinary linear regression after
 
+# scaling features
+
+# as said earlier, scaling features is really important as it makes g.d. run much faster plus getting associated
+# weights for each engineered feature would be clearly evident of information
+
+# create target data
+x = np.arange(0,20,1)
+X = np.c_[x, x**2, x**3]
+print(f"Peak to Peak range by column in Raw        X:{np.ptp(X,axis=0)}")
+
+# add mean_normalization 
+X = zscore_normalize_features(X) # type: ignore
+print(f"Peak to Peak range by column in Normalized X:{np.ptp(X,axis=0)}")
+
+# z-score normalize it!
+
+# now g.d. will run much faster
+
+x = np.arange(0,20,1)
+y = x**2
+
+X = np.c_[x, x**2, x**3]
+X = zscore_normalize_features(X) # type: ignore
+
+model_w, model_b = run_gradient_descent_feng(X, y, iterations=100000, alpha=1e-1) # type: ignore
+# more aggressive value of alpha = learning rate
+
+plt.scatter(x, y, marker='x', c='r', label="Actual Value"); plt.title("Normalized x x**2, x**3 feature")
+plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.ylabel("y"); plt.legend(); plt.show()
+
+# complex functions can also be modelled
+
+x = np.arange(0,20,1)
+y = np.cos(x/2)
+
+X = np.c_[x, x**2, x**3,x**4, x**5, x**6, x**7, x**8, x**9, x**10, x**11, x**12, x**13]
+X = zscore_normalize_features(X) # type: ignore
+
+model_w,model_b = run_gradient_descent_feng(X, y, iterations=1000000, alpha = 1e-1) # type: ignore
+
+plt.scatter(x, y, marker='x', c='r', label="Actual Value"); plt.title("Normalized x x**2, x**3 feature")
+plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.ylabel("y"); plt.legend(); plt.show()
