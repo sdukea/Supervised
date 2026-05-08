@@ -95,3 +95,9 @@ print(sgdr)
 
 print(f"Number of iterations completd: {sgdr.n_iter_}, number of weight updates: {sgdr.t_}")
 
+
+# view parameters
+
+b_norm = sgdr.intercept_
+w_norm = sgdr.coef_
+print(f"model parameters:                   w: {w_norm}, b:{b_norm}")
