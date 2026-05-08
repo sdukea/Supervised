@@ -101,3 +101,14 @@ print(f"Number of iterations completd: {sgdr.n_iter_}, number of weight updates:
 b_norm = sgdr.intercept_
 w_norm = sgdr.coef_
 print(f"model parameters:                   w: {w_norm}, b:{b_norm}")
+
+# make predictions
+
+y_pred_sgd = sgdr.predict(X_norm) # predictions using sgdr.predict
+
+# no test set; use tr. set again
+
+y_pred = np.dot(w_norm, X_norm) + b_norm # predictions using np.dot()
+
+# both should match
+
