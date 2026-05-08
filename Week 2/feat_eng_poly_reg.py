@@ -353,3 +353,38 @@ plt.xlabel("x"); plt.ylabel("y"); plt.legend(); plt.show()
 # NOTE: the scale/range of features here should be same or else you wouldn't be able to know the exact
 # magnitude of weights and cannot infer
 
+# an alternative view
+
+# create target data
+x = np.arange(0, 20, 1)
+y = x**2
+
+# engineer features .
+X = np.c_[x, x**2, x**3]   #<-- added engineered feature
+X_features = ['x','x^2','x^3']
+
+fig,ax=plt.subplots(1, 3, figsize=(12, 3), sharey=True)
+for i in range(len(ax)):
+    ax[i].scatter(X[:,i],y)
+    ax[i].set_xlabel(X_features[i])
+ax[0].set_ylabel("y")
+plt.show()
+
+# note that if the relationship between our features and target is a quadratic, SQUARING the features seems to
+# work.
+# and if features are squared, like X = x**2 (x^2), and the ground truth function is also a parabolic function,
+# the features and the output labels (via the g.t.f.) will be linearly relative – both feature and output labels
+# are raised by a power of 2.
+# And hence, 'linear' regression will work best here, by polynomial-izing the features to square to match the
+# g.t.f. (that imposes a square/quadratic relationship) so as to make both the same power and hence linear (think
+# as if powers cancel and will be made linear)
+
+# that's why the graph of X = x**2; the engineered feature to square; and y; that imposes a square/quadratic 
+# relation; that has been plotted above will have a linear relationship
+
+# and hence, modelling with a linear model now will return model_w and model_b (w and b parameters) that are
+# much more effective and building a model now is just trying to fit a linear model which w and b we got will
+# do their best on now
+
+# So poly. reg is feature engineering and just ordinary linear regression after
+
