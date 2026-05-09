@@ -14,6 +14,8 @@ x_train = np.array([0., 1, 2, 3, 4, 5])
 y_train = np.array([0,  0, 0, 1, 1, 1])
 
 X_train2 = np.array([[0.5, 1.5], [1,1], [1.5, 0.5], [3, 0.5], [2, 2], [1, 2.5]])
+# now has two features – like x_train but x_train is a vector (1D) and X_train2 is a matrix of features
+# (2D)
 y_train2 = np.array([0, 0, 0, 1, 1, 1])
 
 # some data; for each training example, we have 1 associated binary outcome/class – in our case, its 0
@@ -33,7 +35,12 @@ print(neg)
 
 fig,ax = plt.subplots(1,2,figsize=(8,3))
 
-#plot 1, single variable
+# NOTE: In plot, the convention is:
+# x -> y= 1
+# o -> y = 0 
+
+
+#plot 1, single variable/feature
 ax[0].scatter(x_train[pos], y_train[pos], marker='x', s=80, c = 'red', label="y=1")
 
 # x_train[pos] demonstrates boolean masking
@@ -56,5 +63,24 @@ ax[0].set_ylabel('y', fontsize=12)
 ax[0].set_xlabel('x', fontsize=12)
 ax[0].set_title('one variable plot')
 ax[0].legend()
+
+#plot 2, two variables
+plot_data(X_train2, y_train2, ax[1]) # type: ignore
+# a helper function plots data;
+# a mechanism inside it that lets you plot data with 2 features and binary outcome labels
+ax[1].axis([0, 4, 0, 4])
+ax[1].set_ylabel('$x_1$', fontsize=12)
+ax[1].set_xlabel('$x_0$', fontsize=12)
+ax[1].set_title('two variable plot')
+ax[1].legend()
+plt.tight_layout()
+
+# a two-variable/feautre plot
+# - plots the two features
+# - each markers x and o represent binary label 1 and 0
+# - x = 1, o = 0 
+# - so one plot for x0 (one feature) and another for x1 (another feature)
+# - and each marker i.e. for each feature value x0 and x1 (point on graph) the associated label is 
+# marked with a marker x if associated label y = 1 or o if associated label y = 0
 
 plt.show()
