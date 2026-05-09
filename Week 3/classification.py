@@ -66,7 +66,7 @@ ax[0].set_title('one variable plot')
 ax[0].legend()
 
 #plot 2, two variables
-plot_data(X_train2, y_train2, ax[1]) # type: ignore
+# plot_data(X_train2, y_train2, ax[1]) # type: ignore
 # a helper function plots data;
 # a mechanism inside it that lets you plot data with 2 features and binary outcome labels
 ax[1].axis([0, 4, 0, 4])
@@ -218,6 +218,14 @@ x_for_pred = np.linspace(0, 5, 100)
 # you can use this for predicting but again, won't mirror your training examples everywhere – will do
 # by some values as it is in the same range but won't have the EXACT feature values x_train that we used
 # for training and plotting scatter plot
+
+# we do linspace to, as said/understood earlier, evenly grab hold of the entire range x lies on as x 
+# might not always not capture the range fully
+# we want to see the prediction y_pred/y-hat on feature values x_train itself (exactly mirroring) or 
+# feature_values that are in the exact same range as x_train and capture the range to the full length
+# (100 fine divisions evenly up until 5 from 0) because we want to see how the model does in x_train-kind
+# -of-data but with better range so that we can convince ourselves of performance on data that is 
+# well obidient to its scale (x_for_pred is like a better upgrade of x where x is still the GOAT)
 
 y_pred = w_final * x_train + b_final
 
