@@ -2,6 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import math
 
 # examples of classification include:
 # 1. identifying email – spam or not spam
@@ -84,3 +85,144 @@ plt.tight_layout()
 # marked with a marker x if associated label y = 1 or o if associated label y = 0
 
 plt.show()
+
+# linear regression approach
+
+# using l.r. to predict if a tumor is benign or malignant based on tumor size
+
+# it won't be sufficient to model categorical data; let's prove it
+
+# let's do it from scratch – of course
+
+def cost_func(x, y, w, b):
+    
+    m = x.shape[0]
+
+    total_cost = 0
+
+    for i in range(m):
+
+        # compute prediction for each tr. eg.
+        # NOTE: nv -> not a vector (s.l.r. with just one feature)
+
+        f_wb_x_i_nv = w * x[i] + b
+
+        cost = (f_wb_x_i_nv - y[i])**2
+
+        total_cost += cost
+
+    final_cost = total_cost / 2*m
+
+    return final_cost
+
+def compute_grad_terms(x, y, w, b):
+
+    m = x.shape[0]
+
+    dj_dw = 0
+    dj_db = 0
+
+    for i in range(m):
+
+        f_wb_x_i_nv = w * x[i] + b
+
+        dj_dw_i = (f_wb_x_i_nv - y[i]) * x[i]
+
+        dj_db_i = (f_wb_x_i_nv - y[i])
+
+        dj_dw += dj_dw_i
+
+        dj_db += dj_db_i
+    
+    dj_dw = dj_dw / m
+    dj_db = dj_db / m
+
+    return dj_dw, dj_db
+
+def gradient_descent(x, y, w_in, b_in, cost_func, gradient_terms, alpha, iterations):
+
+    J_history = []
+    p_history = []
+
+    w = w_in
+    b = b_in
+
+    for i in range(iterations):
+
+        dj_dw, dj_db = gradient_terms(x, y, w, b)
+
+        # update
+
+        w = w - alpha * dj_dw
+        b = b - alpha * dj_db
+
+        J_history.append(cost_func(x, y, w, b))
+        p_history.append([w, b])
+
+        if i % math.ceil(iterations / 10) == 0:
+        
+            print(f"Iteration {i}: Cost {J_history[-1]} ",
+                  f"dj_dw: {dj_dw}, dj_db: {dj_db}  ",
+                  f"w: {w}, b:{b}") 
+    
+    return w, b, J_history, p_history
+
+# now, we have the best parameters possibly to implement l.r. on categorical data and see why
+# the linear model won't do good
+
+w_init = 0
+b_init = 0
+
+iterations = 10000
+
+alpha = 1.0e-2
+
+w_final, b_final, J_hist, p_hist = gradient_descent(x_train, y_train, w_init,
+                                                    b_init, cost_func=cost_func, 
+                                                    gradient_terms=compute_grad_terms, alpha=alpha,
+                                                    iterations=iterations)
+
+ax[1].scatter(x_train[neg], y_train[neg], marker='o', s=100, label="y=0", facecolors='none', 
+              edgecolors='blue',lw=3)
+
+ax[1].scatter(x_train[pos], y_train[pos], marker='x', s='80', label='y=1')
+
+ax[1].legend()
+
+# s -> size of marker
+# label -> for when legend is used; sets up legend
+
+# now to plot a linear regression model line in our categorical plot here:
+
+# we need points!
+# i.e. feature value x (x-coordinate) and prediction by our model (y-coordinate)
+
+# right now, we have learned parameters w and b
+
+# and our scatter plot of categorical data we want to plot on has x range from 0 to 5
+
+# so our data that goes in model (till now, we've seen adding training data itself for prediction done
+# by model with w and b we got) should be in the same range for it to exist clearly in the plot as this
+# x_train is what we used to plot and imposes the 0 to 5 range in x-axis (where feature x is always 
+# plotted)
+
+# so we'll use the training data x_train itself for prediction
+
+# we could also do:
+
+x_for_pred = np.linspace(0, 5, 100)
+
+# creates 100 values between 0 to 5 i.e. 100 feature values evenly spaced between 0 to 5
+# where 0 to 5 is the range our x_train was also in
+
+# you can use this for predicting but again, won't mirror your training examples everywhere – will do
+# by some values as it is in the same range but won't have the EXACT feature values x_train that we used
+# for training and plotting scatter plot
+
+y_pred = w_final * x_train + b_final
+
+# got predictions
+
+# plot line
+
+ax[1].plot(x_train, y_pred)
