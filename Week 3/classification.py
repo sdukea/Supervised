@@ -185,7 +185,7 @@ w_final, b_final, J_hist, p_hist = gradient_descent(x_train, y_train, w_init,
 ax[1].scatter(x_train[neg], y_train[neg], marker='o', s=100, label="y=0", facecolors='none', 
               edgecolors='blue',lw=3)
 
-ax[1].scatter(x_train[pos], y_train[pos], marker='x', s='80', label='y=1')
+ax[1].scatter(x_train[pos], y_train[pos], marker='x', s=80, label='y=1')
 
 ax[1].legend()
 
@@ -234,3 +234,5 @@ y_pred = w_final * x_train + b_final
 # plot line
 
 ax[1].plot(x_train, y_pred)
+
+plt.show()
