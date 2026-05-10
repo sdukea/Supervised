@@ -84,8 +84,6 @@ plt.tight_layout()
 # - and each marker i.e. for each feature value x0 and x1 (point on graph) the associated label is 
 # marked with a marker x if associated label y = 1 or o if associated label y = 0
 
-plt.show()
-
 # linear regression approach
 
 # using l.r. to predict if a tumor is benign or malignant based on tumor size
@@ -236,3 +234,5 @@ y_pred = w_final * x_train + b_final
 ax[1].plot(x_train, y_pred)
 
 plt.show()
+
+# we can see why a linear model won't be able to generalize categorical input data
