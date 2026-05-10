@@ -83,4 +83,11 @@ def sigmoid(z):
          
     """
 
-    
+    g = 1 / (1+np.exp(-z))
+
+    return g
+
+# let's see how the output of this function is for various values of z
+
+# generate evenly spaced values between -10 and 10
+z_tmp = np.arange(-10, 11)
