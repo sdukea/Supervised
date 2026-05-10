@@ -27,4 +27,4 @@ def compute_cost(x, y, w, b): # only computing cost, not trying to compute model
 
 cost = compute_cost(x_train, y_train, w=200, b=100)
 
-print(cost)
+print(cost) 
