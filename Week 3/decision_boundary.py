@@ -68,4 +68,24 @@ ax.set_title("Sigmoid function")
 ax.set_ylabel('sigmoid(z)')
 ax.set_xlabel('z')
 
+# NOTE: we have 2 features – model is f_wb_x_i_vec = w1x1 + w2x2 + b
+
+# as you know, a d.b. can be found for when
+# 1. z = wx + b = 0
+
+# because when wx + b is > 0, g(z) > or = 0.5 and pred/y-hat = 1
+# (vice versa)
+
+# say you've found w1 = 1, w2 = 1, b = -3
+# that minimized the cost function (will see later)
+
+# so, model becomes
+
+# x1 + x2 - 3 = z
+
+# so, x1 + x2 - 3 = 0 is what yields d.b.
+
+# so to plot it, yes, you plot x1 and x2
+
+
 plt.show()
