@@ -173,3 +173,15 @@ plt.show()
 # x-axis contains all these z_tmp predictions that are not exactly 0 or 1 but infer these class 
 # predictions by being greater than 1 (until 11 in our case) or less than 0 (until -10 in our case)
 
+# log. reg.
+
+# get some data in; as you know, its categorical – for each feature value/vector, we have an associated
+# binary outcome only
+
+x_train = np.array([0., 1, 2, 3, 4, 5])
+y_train = np.array([0,  0, 0, 1, 1, 1])
+
+# initialize w and b = 0 for now
+w_in = np.zeros((1))
+b_in = 0
+
