@@ -115,7 +115,7 @@ ax.plot(x1,x2, c="b")
 # set axis limits: x_min, x_max, y_min, y_max
 ax.axis([0, 4, 0, 3.5])
 
-# fill region below line
+# fill region below line 
 ax.fill_between(x1,x2, alpha=0.2)
 
 
