@@ -87,5 +87,36 @@ ax.set_xlabel('z')
 
 # so to plot it, yes, you plot x1 and x2
 
+# see, you're just plotting a line
+
+# and to do so, you need values
+
+# this is a 2D line – a simple line
+
+# so it needs values on the x and y axis
+
+# here, we're actually plotting the line x1 + x2 = 3
+
+# and so, we're plotting x1 values and x2 values inherently, each on a seperate axis (2-feature case
+# having 2 axis)
+
+# so, 
+
+# generate some x0 values for the plotting
+
+x1 = np.arange(0, 6)
+
+# now create x1
+x2 = 3 - x1
+
+# plot it
+ax.plot(x1,x2, c="b")
+
+# set axis limits: x_min, x_max, y_min, y_max
+ax.axis([0, 4, 0, 3.5])
+
+# fill region below line
+ax.fill_between(x1,x2, alpha=0.2)
+
 
 plt.show()
