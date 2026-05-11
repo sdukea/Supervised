@@ -81,6 +81,12 @@ import matplotlib.pyplot as plt
 
 # that's why a sig. func. helps
 
+# NOTE: output of a sig. func. – 0 to 1, yes, but it signifies the prob. that this number between 0 to 
+# 1 is the probability that the outcome is class = 1 (y = 1)    
+
+# NOTE: and of course, we apply thresholds to the sig. func. outputs to get it to exactly say, 
+# between 0 and 1, that whether value is 0 or 1
+
 # formula for s. func.
 # demonstrating exponentiation
 
@@ -184,4 +190,20 @@ y_train = np.array([0,  0, 0, 1, 1, 1])
 # initialize w and b = 0 for now
 w_in = np.zeros((1))
 b_in = 0
+
+
+"""
+Try the following steps:
+- Click on 'Run Logistic Regression' to find the best logistic regression model for the given training data
+    - Note the resulting model fits the data quite well.
+    - Note, the orange line is '$z$' or $\mathbf{w} \cdot \mathbf{x}^{(i)} + b$  above. It does not match the line in a linear regression model.
+Further improve these results by applying a *threshold*. 
+- Tick the box on the 'Toggle 0.5 threshold' to show the predictions if a threshold is applied.
+    - These predictions look good. The predictions match the data
+    - Now, add further data points in the large tumor size range (near 10), and re-run logistic regression.
+    - unlike the linear regression model, this model continues to make correct predictions
+"""
+
+plt.close('all') 
+addpt = plt_one_addpt_onclick( x_train,y_train, w_in, b_in, logistic=True) # type: ignore
 
