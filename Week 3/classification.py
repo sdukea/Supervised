@@ -185,6 +185,11 @@ ax[1].scatter(x_train[neg], y_train[neg], marker='o', s=100, label="y=0", faceco
 
 ax[1].scatter(x_train[pos], y_train[pos], marker='x', s=80, label='y=1')
 
+ax[1].set_ylim(-0.08,1.1)
+ax[1].set_ylabel('y', fontsize=12)
+ax[1].set_xlabel('x', fontsize=12)
+ax[1].set_title('two variable plot')
+
 ax[1].legend()
 
 # s -> size of marker

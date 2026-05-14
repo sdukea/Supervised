@@ -60,9 +60,9 @@ def sigmoid(z):
 
     return g
 
-fig,ax = plt.subplots(1,1,figsize=(5,3))
-# Plot z vs sigmoid(z)
-ax.plot(z, sigmoid(z), c="b")
+# fig,ax = plt.subplots(1,1,figsize=(5,3))
+# # Plot z vs sigmoid(z)
+# ax.plot(z, sigmoid(z), c="b")
 
 ax.set_title("Sigmoid function")
 ax.set_ylabel('sigmoid(z)')
