@@ -84,5 +84,21 @@ w, b, J, p = gradient_descent(
 print("Final w:", w)
 print("Final b:", b)
 
-for i in p:
-    print(i)
+fig, ax = plt.subplots(1, 1)
+
+ax.plot(J, p)
+
+# if you do this, this is what happens
+
+# 'p' is a list like:
+# [ , ]
+# [ , ]
+# [ , ]
+#  ...
+
+# your plot will have two lines; one for J vs first column of 'p' = all w values
+# another line for J vs second column of 'p' = all b values
+# Matplotlib interprets this as two columns by itself as shape is like (1000,2) while for J, its just
+# (1000,)
+
+# So what should you do to see the wiggly convex graph of J vs parameters w and b?
