@@ -63,3 +63,18 @@ def gd(x, y, w_in, b_in, alpha, num_iters, cost_func, grad_func):
 
     w = w_in
     b = b_in
+
+    for i in range(num_iters):
+
+        d_dw_j, d_dw_b = grad_func(x, y, w, b)
+
+        w = w - alpha * d_dw_j
+        b = b - alpha * d_dw_b
+
+        J_history.append(cost_func(x, y, w, b))
+        # cost for all tr. eg.
+
+        p_history.append([w, b])
+
+    return w, b, J_history, p_history
+
