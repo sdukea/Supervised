@@ -46,4 +46,20 @@ def compute_grad_terms(x, y, w, b):
 
         d_dw_j_i = (pred - y[i])**2
 
-        
+        d_dw_b_i = pred
+
+        dj_dw += d_dw_j_i
+        dj_db += d_dw_b_i
+    
+    dj_dw /= (2*m)
+    dj_db /= (2*m)
+
+    return dj_dw, dj_db
+
+def gd(x, y, w_in, b_in, alpha, num_iters, cost_func, grad_func):
+
+    J_history = []
+    p_history = []
+
+    w = w_in
+    b = b_in
