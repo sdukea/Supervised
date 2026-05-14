@@ -57,6 +57,7 @@ def compute_gradient(x, y, w, b):
 def gradient_descent(x, y, w, b, alpha, iterations):
 
     J_history = []
+    p_hist = []
 
     for i in range(iterations):
 
@@ -65,11 +66,13 @@ def gradient_descent(x, y, w, b, alpha, iterations):
         w -= alpha * dj_dw
         b -= alpha * dj_db
 
+        p_hist.append([w, b])
+
         J_history.append(compute_cost(x, y, w, b))
 
-    return w, b, J_history
+    return w, b, J_history, p_hist
 
-w, b, J = gradient_descent(
+w, b, J, p = gradient_descent(
     x_train,
     y_train,
     0,
@@ -81,3 +84,5 @@ w, b, J = gradient_descent(
 print("Final w:", w)
 print("Final b:", b)
 
+for i in p:
+    print(i)
