@@ -130,3 +130,10 @@ for i in range(W.shape[0]):
             w,
             b
         )
+
+# plot 3D surface plot
+
+fig = plt.figure(figsize=(10,7))
+
+ax = fig.add_subplot(projection='3d')
+
