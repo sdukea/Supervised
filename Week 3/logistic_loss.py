@@ -133,8 +133,17 @@ for i in range(W.shape[0]):
 
 # plot 3D surface plot
 
-fig = plt.figure(figsize=(10,7))
+from mpl_toolkits.mplot3d import Axes3D
 
-ax = fig.add_subplot(projection='3d')
 
+fig = plt.figure(figsize=(10, 7))
+ax: Axes3D = fig.add_subplot(111, projection='3d')
+
+ax.plot_surface(
+    W,
+    B,
+    J_vals
+)
+
+plt.show()
 # ChatGPT stopped answering my questions from here
