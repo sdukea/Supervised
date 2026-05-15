@@ -108,3 +108,6 @@ w_vals = np.linspace(-10, 10, 100)
 
 b_vals = np.linspace(-10, 10, 100)
 
+# meshgrid
+W, B = np.meshgrid(w_vals, b_vals)
+
