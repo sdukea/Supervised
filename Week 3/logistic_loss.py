@@ -147,4 +147,5 @@ ax.plot_surface(
 )
 
 plt.show()
-# ChatGPT stopped answering my questions from here
+
+# working!
