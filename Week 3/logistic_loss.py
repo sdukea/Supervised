@@ -134,10 +134,11 @@ for i in range(W.shape[0]):
 # plot 3D surface plot
 
 from mpl_toolkits.mplot3d import Axes3D
+from typing import cast
 
 
 fig = plt.figure(figsize=(10, 7))
-ax: Axes3D = fig.add_subplot(111, projection='3d')
+ax = cast(Axes3D, fig.add_subplot(111, projection='3d'))
 
 ax.plot_surface(
     W,
