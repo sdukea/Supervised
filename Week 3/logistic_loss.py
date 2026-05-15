@@ -72,7 +72,7 @@ def gradient_descent(x, y, w, b, alpha, iterations):
 
     return w, b, J_history, p_hist
 
-w, b, J_vals, p = gradient_descent(
+w, b, J_model, p = gradient_descent(
     x_train,
     y_train,
     0,
@@ -91,13 +91,13 @@ for w, b, in p:
     w_model.append(w)
     b_model.append(b)
 
-# NOTE: values in J_vals, w_vals and b_vals are only for the RIGHT BABY STEPS IN THE G.D. plot
+# NOTE: values in J_model, w_model and b_model are only for the RIGHT BABY STEPS IN THE G.D. plot
 # it represents the coordinates for the optimized path G.D. takes to reach a valley fast such that
 # we have the lowest cost J for that w and b (valley)
 # but in order to see G.D. plot, we shouldn't just use this BABY STEPS PATH ALONE - this optimized path
 # will just be a line (shaky of course) that goes to the valley
 # For G.D. plot, we need ALL possible combinations of w, b and inherent J so that we get the entire area 
-# plotted AND then draw the optimized path with the subset w and b (w_vals and b_vals) and J_vals that
+# plotted AND then draw the optimized path with the subset w and b (w_model and b_model) and J_model that
 # shows us the optimized path towards a valley from the whole area plot of G.D. 
 
 # so to generate the entire G.D. plot with all possible combinations of w and b and all of the cost J
@@ -111,3 +111,22 @@ b_vals = np.linspace(-10, 10, 100)
 # meshgrid
 W, B = np.meshgrid(w_vals, b_vals)
 
+# emppty array with same size as W (ofc)
+J_vals = np.zeros_like(W)
+
+# ----------------------------------------
+
+for i in range(W.shape[0]):
+
+    for j in range(W.shape[1]):
+
+        w = W[i, j]
+
+        b = B[i, j]
+
+        J_vals[i, j] = compute_cost(
+            x_train,
+            y_train,
+            w,
+            b
+        )
