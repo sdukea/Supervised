@@ -84,12 +84,12 @@ w, b, J_vals, p = gradient_descent(
 print("Final w:", w)
 print("Final b:", b)
 
-w_vals = []
-b_vals = []
+w_model = []
+b_model = []
 
 for w, b, in p:
-    w_vals.append(w)
-    b_vals.append(b)
+    w_model.append(w)
+    b_model.append(b)
 
 # NOTE: values in J_vals, w_vals and b_vals are only for the RIGHT BABY STEPS IN THE G.D. plot
 # it represents the coordinates for the optimized path G.D. takes to reach a valley fast such that
@@ -99,3 +99,12 @@ for w, b, in p:
 # For G.D. plot, we need ALL possible combinations of w, b and inherent J so that we get the entire area 
 # plotted AND then draw the optimized path with the subset w and b (w_vals and b_vals) and J_vals that
 # shows us the optimized path towards a valley from the whole area plot of G.D. 
+
+# so to generate the entire G.D. plot with all possible combinations of w and b and all of the cost J
+# for them, we use meshgrid
+
+
+w_vals = np.linspace(-10, 10, 100)
+
+b_vals = np.linspace(-10, 10, 100)
+
