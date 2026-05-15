@@ -72,7 +72,7 @@ def gradient_descent(x, y, w, b, alpha, iterations):
 
     return w, b, J_history, p_hist
 
-w, b, J, p = gradient_descent(
+w, b, J_vals, p = gradient_descent(
     x_train,
     y_train,
     0,
@@ -84,21 +84,18 @@ w, b, J, p = gradient_descent(
 print("Final w:", w)
 print("Final b:", b)
 
-fig, ax = plt.subplots(1, 1)
+w_vals = []
+b_vals = []
 
-ax.plot(J, p)
+for w, b, in p:
+    w_vals.append(w)
+    b_vals.append(b)
 
-# if you do this, this is what happens
-
-# 'p' is a list like:
-# [ , ]
-# [ , ]
-# [ , ]
-#  ...
-
-# your plot will have two lines; one for J vs first column of 'p' = all w values
-# another line for J vs second column of 'p' = all b values
-# Matplotlib interprets this as two columns by itself as shape is like (1000,2) while for J, its just
-# (1000,)
-
-# So what should you do to see the wiggly convex graph of J vs parameters w and b?
+# NOTE: values in J_vals, w_vals and b_vals are only for the RIGHT BABY STEPS IN THE G.D. plot
+# it represents the coordinates for the optimized path G.D. takes to reach a valley fast such that
+# we have the lowest cost J for that w and b (valley)
+# but in order to see G.D. plot, we shouldn't just use this BABY STEPS PATH ALONE - this optimized path
+# will just be a line (shaky of course) that goes to the valley
+# For G.D. plot, we need ALL possible combinations of w, b and inherent J so that we get the entire area 
+# plotted AND then draw the optimized path with the subset w and b (w_vals and b_vals) and J_vals that
+# shows us the optimized path towards a valley from the whole area plot of G.D. 
