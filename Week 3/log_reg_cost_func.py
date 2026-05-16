@@ -19,6 +19,9 @@ ax.scatter(X_train[:,0], X_train[:,1])
 
 ax.set_ylabel('y', fontsize=12)
 ax.set_xlabel('x', fontsize=12)
+
+ax.axis([0, 4, 0, 4])
+
 ax.legend()
 
 plt.show()
