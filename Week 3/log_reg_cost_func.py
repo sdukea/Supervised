@@ -17,8 +17,8 @@ fig, ax = plt.subplots(1, 1, figsize=(5, 3))
 
 ax.scatter(X_train[:,0], X_train[:,1])
 
-ax[0].set_ylabel('y', fontsize=12)
-ax[0].set_xlabel('x', fontsize=12)
+ax.set_ylabel('y', fontsize=12)
+ax.set_xlabel('x', fontsize=12)
 ax.legend()
 
 plt.show()
