@@ -60,6 +60,7 @@ def sigmoid(z):
 
     return g_z
 
+print(compute_cost_logistic(X_train, y_train, w_tmp, b_tmp, sigmoid))
 
 
 plt.show()
