@@ -24,12 +24,24 @@ ax.axis([0, 4, 0, 4])
 
 # compute cost for each training eg: loss
 
-def compute_cost_logistic(x, y, w, b):
+def compute_cost_logistic(x, y, w, b, sig_func):
 
     m = x.shape[0]
     # get rows
 
-    pass
+
+    cost = 0.0
+
+    for i in range(m): # for each training example
+        z_i = np.dot(x[i], w) + b
+
+        f_wb_i = sig_func(z_i)
+
+        cost += -y[i]*np.log(f_wb_i) - (1-y[i])*np.log(1-f_wb_i)
+
+    cost = cost / m
+
+    return cost
 
 ax.legend()
 
