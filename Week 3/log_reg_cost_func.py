@@ -33,9 +33,12 @@ def compute_cost_logistic(x, y, w, b, sig_func):
     cost = 0.0
 
     for i in range(m): # for each training example
+
         z_i = np.dot(x[i], w) + b
+        # raw, >1/<0 prediction for each tr. eg.
 
         f_wb_i = sig_func(z_i)
+        # convert to probabilistic value showing how the tr. eg. is equal to y = 1
 
         cost += -y[i]*np.log(f_wb_i) - (1-y[i])*np.log(1-f_wb_i)
 
