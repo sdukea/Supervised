@@ -13,3 +13,7 @@ y_train = np.array([0, 0, 0, 1, 1, 1])                                          
 pos = y_train == 1
 neg = y_train == 0
 
+fig, ax = plt.subplots(1, 1, figsize=(5, 3))
+
+ax.scatter(X_train[pos], y_train[pos], marker='x', s=80, c='red', label='y=1')
+
