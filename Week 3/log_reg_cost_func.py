@@ -22,6 +22,15 @@ ax.set_xlabel('x', fontsize=12)
 
 ax.axis([0, 4, 0, 4])
 
+# compute cost for each training eg: loss
+
+def compute_cost_logistic(x, y, w, b):
+
+    m = x.shape[0]
+    # get rows
+
+    pass
+
 ax.legend()
 
 plt.show()
