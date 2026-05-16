@@ -22,6 +22,9 @@ ax.set_xlabel('x', fontsize=12)
 
 ax.axis([0, 4, 0, 4])
 
+ax.legend()
+
+
 # compute cost for each training eg: loss
 
 def compute_cost_logistic(x, y, w, b, sig_func):
@@ -46,6 +49,17 @@ def compute_cost_logistic(x, y, w, b, sig_func):
 
     return cost
 
-ax.legend()
+# check c.func. implementation
+
+w_tmp = np.array([1, 1])
+b_tmp = -3
+
+def sigmoid(z):
+
+    g_z = 1 / 1 + np.exp(z)
+
+    return g_z
+
+
 
 plt.show()
