@@ -56,11 +56,11 @@ b_tmp = -3
 
 def sigmoid(z):
 
-    g_z = 1 / 1 + np.exp(z)
+    g_z = 1 / (1 + np.exp(z))
 
     return g_z
 
-print(compute_cost_logistic(X_train, y_train, w_tmp, b_tmp, sigmoid))
+print(compute_cost_logistic(X_train, y_train, w_tmp, b_tmp, sig_func=sigmoid))
 
 
 plt.show()
