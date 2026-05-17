@@ -56,7 +56,7 @@ b_tmp = -3
 
 def sigmoid(z):
 
-    g_z = 1 / (1 + np.exp(z))
+    g_z = 1 / (1 + np.exp(-z))
 
     return g_z
 
