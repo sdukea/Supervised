@@ -98,8 +98,20 @@ ax.scatter(X_train[:,0], X_train[:,1])
 ax.set_ylabel('y', fontsize=12)
 ax.set_xlabel('x', fontsize=12)
 
-ax.axis([0, 4, 0, 4])
-
 # yeah, the same plot as above
+
+# now you see that the magenta line – the new d. boundary line with b = -4 – is not a good boundary of
+# the outcome
+# - it misclassifies/misinterprets the outcomes
+# - the points < boundary = negative class
+#   but positive class points fall below the boundary and are being misclassified as 'negative'/False
+#   and there is no meaning to this seperation given by the boundary
+
+# so, b = -4 and the 2. d.boundary is not good
+# so it should have higher cost
+
+# let's see that
+
+
 
 plt.show()
