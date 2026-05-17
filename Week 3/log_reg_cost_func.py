@@ -83,4 +83,12 @@ x1_other = 4 - x0
 
 # plot them
 
+fig, ax = plt.subplots(1, 1, figsize=(4, 4))
+
+ax.plot(x0, x1, c='blue', label='b=-3')
+ax.plot(x0, x1_other, c='magenta', label='b=-4')
+ax.axis([0, 4, 0, 4])
+
+
+
 plt.show()
