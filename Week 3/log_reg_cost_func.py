@@ -53,6 +53,9 @@ def compute_cost_logistic(x, y, w, b, sig_func):
 
 w_tmp = np.array([1, 1])
 b_tmp = -3
+# recall, we used w1 = 1, w2 = 1 and b = -3 prev. for d. boundary
+# driving them here as well 
+# these are pre-given/for demonstration
 
 def sigmoid(z):
 
@@ -62,5 +65,22 @@ def sigmoid(z):
 
 print(compute_cost_logistic(X_train, y_train, w_tmp, b_tmp, sig_func=sigmoid))
 
+# let's set diff. value for w1, w2 and b now and see what the cost outputs
+
+# say: w1 = 1, w2 = 1, b = -4
+
+# so you have two diff. d. boundaries now:
+# 1. x1 + x2 -3 = 0
+#       x1 + x2 = 3
+
+# 2. x1 + x2 - 4 = 0
+#        x1 + x2 = 4
+
+x0 = np.arange(0, 6)
+
+x1 = 3 - x0
+x1_other = 4 - x0
+
+# plot them
 
 plt.show()
