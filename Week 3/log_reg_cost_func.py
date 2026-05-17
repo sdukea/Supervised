@@ -89,6 +89,17 @@ ax.plot(x0, x1, c='blue', label='b=-3')
 ax.plot(x0, x1_other, c='magenta', label='b=-4')
 ax.axis([0, 4, 0, 4])
 
+# these are only d. boundary plots - only lines
+# you have to now plot the binary outcomes to see how well the d. boundary seperates them - proposes a 
+# boundary
 
+ax.scatter(X_train[:,0], X_train[:,1])
+
+ax.set_ylabel('y', fontsize=12)
+ax.set_xlabel('x', fontsize=12)
+
+ax.axis([0, 4, 0, 4])
+
+# yeah, the same plot as above
 
 plt.show()
