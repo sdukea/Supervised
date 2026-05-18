@@ -26,7 +26,7 @@ def sigmoid(z):
 
     return g_z
 
-def compute_grad_terms_logistic(X, y, w, b):
+def compute_grad_terms_logistic(X, y, w, b, sigmoid):
 
     m, n = X.shape[0]
 
@@ -35,3 +35,20 @@ def compute_grad_terms_logistic(X, y, w, b):
     dj_db = 0
 
     # dj_dw to 0 to start accumulating
+
+    for i in range(m): # for each training example
+
+        f_wb_x_i = sigmoid(np.dot(X[i], w) + b)
+
+        error_i = f_wb_x_i - y[i]
+
+        for j in range(n):
+
+            dj_dw[i] += error_i * X[i, j]
+
+        dj_db += error_i
+    
+    dj_dw = dj_dw / m
+    dj_db = dj_db / m
+
+
