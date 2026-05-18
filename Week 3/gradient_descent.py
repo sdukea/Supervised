@@ -19,3 +19,19 @@ ax.set_ylabel("x1", fontsize=12)
 ax.set_xlabel("x0", fontsize=12)
 
 plt.show()
+
+def sigmoid(z):
+
+    g_z = 1 / (1 + np.exp(-z))
+
+    return g_z
+
+def compute_grad_terms_logistic(X, y, w, b):
+
+    m, n = X.shape[0]
+
+    dj_dw = np.zeros(n)
+
+    dj_db = 0
+
+    # dj_dw to 0 to start accumulating
