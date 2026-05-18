@@ -28,7 +28,7 @@ def sigmoid(z):
 
 def compute_grad_terms_logistic(X, y, w, b, sigmoid):
 
-    m, n = X.shape[0]
+    m, n = X.shape
 
     dj_dw = np.zeros(n)
 
@@ -44,11 +44,24 @@ def compute_grad_terms_logistic(X, y, w, b, sigmoid):
 
         for j in range(n):
 
-            dj_dw[i] += error_i * X[i, j]
+            dj_dw[j] += error_i * X[i, j]
 
         dj_db += error_i
     
     dj_dw = dj_dw / m
     dj_db = dj_db / m
 
+    return dj_db, dj_dw
+
+
+# check implementation
+X_tmp = np.array([[0.5, 1.5], [1,1], [1.5, 0.5], [3, 0.5], [2, 2], [1, 2.5]])
+y_tmp = np.array([0, 0, 0, 1, 1, 1])
+w_tmp = np.array([2.,3.])
+b_tmp = 1.
+
+dj_db_tmp, dj_dw_tmp = compute_grad_terms_logistic(X_tmp, y_tmp, w_tmp, b_tmp, sigmoid=sigmoid)
+
+print(f"dj_db: {dj_db_tmp}" )
+print(f"dj_dw: {dj_dw_tmp.tolist()}" )
 
