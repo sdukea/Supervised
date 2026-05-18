@@ -36,7 +36,7 @@ def compute_grad_terms_logistic(X, y, w, b, sigmoid):
 
     # dj_dw to 0 to start accumulating
 
-    for i in range(m): # for each training example
+    for i in range(m):
 
         f_wb_x_i = sigmoid(np.dot(X[i], w) + b)
 
@@ -48,6 +48,14 @@ def compute_grad_terms_logistic(X, y, w, b, sigmoid):
 
         dj_db += error_i
     
+    # for each tr. eg.
+    # 1. compute pred.
+    # 2. find error
+    # 3. multiply error with each feature value in tr. eg.
+    # 4. accumulate in dj_dw by position for each w (dj_dw1 for w1, dj_dw2 for w2 and so on)
+    # 5. finally, accumulate dj_db for error
+    
+
     dj_dw = dj_dw / m
     dj_db = dj_db / m
 
@@ -65,3 +73,22 @@ dj_db_tmp, dj_dw_tmp = compute_grad_terms_logistic(X_tmp, y_tmp, w_tmp, b_tmp, s
 print(f"dj_db: {dj_db_tmp}" )
 print(f"dj_dw: {dj_dw_tmp.tolist()}" )
 
+# do g.d.
+
+def gradient_descent(X, y, w_initial, b_initial, alpha, num_iters):
+
+    cost_history = []
+
+    w = copy.deepcopy(w_initial)
+
+    b = b_initial   
+
+    for i in range(num_iters):
+
+        dj_db, dj_dw = compute_grad_terms_logistic(X, y, w, b, sigmoid=sigmoid)
+
+        w = w - alpha * dj_dw
+
+        b = b - alpha * dj_db
+
+    return w, b
