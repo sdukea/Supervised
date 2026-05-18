@@ -92,3 +92,15 @@ def gradient_descent(X, y, w_initial, b_initial, alpha, num_iters):
         b = b - alpha * dj_db
 
     return w, b
+
+
+w_tmp = np.zeros_like(X_train[0])
+b_tmp = 0.
+
+alph = 0.1
+iters = 10000
+
+w_out, b_out = gradient_descent(X_train, y_train, w_tmp, b_tmp, alph, iters)
+
+print(f"Final parameters; w = {w_out}, b = {b_out}")
+
