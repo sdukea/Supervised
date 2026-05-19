@@ -37,3 +37,6 @@ print(y_pred)
 acc = lr_model.score(X, y)
 
 print(acc)
+
+# acc = 1.0 / model did very well
+
