@@ -31,3 +31,9 @@ y_pred = lr_model.predict(X)
 # for us)
 
 print(y_pred)
+
+# seems to do very well – check accuracy
+
+acc = lr_model.score(X, y)
+
+print(acc)
