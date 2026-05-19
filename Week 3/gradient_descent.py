@@ -18,8 +18,6 @@ ax.axis([0, 4, 0, 3.5])
 ax.set_ylabel("x1", fontsize=12)
 ax.set_xlabel("x0", fontsize=12)
 
-plt.show()
-
 def sigmoid(z):
 
     g_z = 1 / (1 + np.exp(-z))
@@ -127,3 +125,4 @@ ax.scatter(
     label='y=1'
 )
 
+plt.show()
