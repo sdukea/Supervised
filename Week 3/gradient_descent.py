@@ -104,3 +104,22 @@ w_out, b_out = gradient_descent(X_train, y_train, w_tmp, b_tmp, alph, iters)
 
 print(f"Final parameters; w = {w_out}, b = {b_out}")
 
+# plot results of gradient descent
+
+fig, ax = plt.subplots(figsize=(5,4))
+
+# class 0 points
+ax.scatter(
+    X_train[y_train == 0][:,0],
+    X_train[y_train == 0][:,1],
+    marker='o',
+    label='y=0'
+)
+
+# class 1 points
+ax.scatter(
+    X_train[y_train == 1][:,0],
+    X_train[y_train == 1][:,1],
+    marker='x',
+    label='y=1'
+)
