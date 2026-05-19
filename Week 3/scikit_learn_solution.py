@@ -13,3 +13,11 @@ y = np.array([0, 0, 0, 1, 1, 1])
 
 from sklearn.linear_model import LogisticRegression
 
+lr_model = LogisticRegression()
+lr_model.fit(X, y)
+
+# do the necessary setup with the data i.e.
+# study the data and memorize the statistics needed for normalization
+# so, .fit() finds mean of each column and S.D. for each column AND KEEPS IT READY
+# only then can it transform (if we specify it like .transform() or inside .fit_transform())
+
