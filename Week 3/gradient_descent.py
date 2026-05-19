@@ -108,18 +108,22 @@ print(f"Final parameters; w = {w_out}, b = {b_out}")
 
 fig, ax = plt.subplots(figsize=(5,4))
 
+pos = y_train == 1
+neg = y_train == 0
+
 # class 0 points
 ax.scatter(
-    X_train[y_train == 0][:,0],
-    X_train[y_train == 0][:,1],
+    X_train[neg][:,0],
+    X_train[neg][:,1],
     marker='o',
     label='y=0'
 )
 
 # class 1 points
 ax.scatter(
-    X_train[y_train == 1][:,0],
-    X_train[y_train == 1][:,1],
+    X_train[pos][:,0],
+    X_train[pos][:,1],
     marker='x',
     label='y=1'
 )
+
