@@ -30,3 +30,4 @@ y_pred = lr_model.predict(X)
 # for each tr. eg., y_pred will hold a predicted value (0 or 1 now; does all of the conversion to binary
 # for us)
 
+print(y_pred)
