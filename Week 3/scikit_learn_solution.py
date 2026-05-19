@@ -21,3 +21,12 @@ lr_model.fit(X, y)
 # so, .fit() finds mean of each column and S.D. for each column AND KEEPS IT READY
 # only then can it transform (if we specify it like .transform() or inside .fit_transform())
 
+
+# make predictions
+
+y_pred = lr_model.predict(X)
+# yes, using the same tr. set to predict
+
+# for each tr. eg., y_pred will hold a predicted value (0 or 1 now; does all of the conversion to binary
+# for us)
+
