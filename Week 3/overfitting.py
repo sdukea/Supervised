@@ -53,4 +53,12 @@ It’s one of the most important toy datasets in machine learning education.
 # X -> 300 training examples, 2 features per example
 # so a 2D array of 300 entries where each entry is a 1D vector of 2 feature values
 
-# NOTE: out of the 10
+# NOTE: out of the 300 tr. eg., 150 correspond to one moon cluster data points and have associated binary 
+# outcome of 0; the other 150 corresponds to the second moon cluster data points that have associated
+# binary outcome of 1
+
+# noise is also added
+
+# random_state=42, every run, you get the same moon data points (for both moons corresponding to the 
+# 2 binary outcomes)
+
