@@ -1,7 +1,7 @@
 # exploring situations where overfitting may occur
 # and some solutions
 
-import matplotlib.pyplot as pltplt
+import matplotlib.pyplot as plt
 
 from ipywidgets import Output
 
@@ -62,3 +62,5 @@ It’s one of the most important toy datasets in machine learning education.
 # random_state=42, every run, you get the same moon data points (for both moons corresponding to the 
 # 2 binary outcomes)
 
+plt.scatter(X[:,0], X[:,1], c=y)
+plt.show()
