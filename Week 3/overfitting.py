@@ -3,3 +3,4 @@
 
 import matplotlib.pyplot as pltplt
 
+from ipywidgets import Output
