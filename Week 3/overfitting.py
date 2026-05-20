@@ -64,3 +64,4 @@ It’s one of the most important toy datasets in machine learning education.
 
 plt.scatter(X[:,0], X[:,1], c=y)
 plt.show()
+
