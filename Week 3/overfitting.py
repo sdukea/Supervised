@@ -29,3 +29,28 @@ X, y = make_moons(
     noise=0.25,
     random_state=42
 )
+
+# data:
+# is two crescent moon clusters of data
+# and each cluster of data/moon points correspond to one binary outcome 0 or 1
+# one might be inverted or both might be facing the same direction
+# data does NOT show a linear relationship - a line cannot separate them so
+# that's why this is usefult to demo overfitting - you will have to fit a complex model to it
+
+""""
+This dataset is intentionally designed to demonstrate:
+
+nonlinear classification
+decision boundaries
+overfitting
+underfitting
+feature engineering
+kernel methods
+
+It’s one of the most important toy datasets in machine learning education.
+"""
+
+# X -> 300 training examples, 2 features per example
+# so a 2D array of 300 entries where each entry is a 1D vector of 2 feature values
+
+# NOTE: out of the 10
