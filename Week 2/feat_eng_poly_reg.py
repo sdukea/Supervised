@@ -495,7 +495,11 @@ plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.y
 # in our dataset, these output labels are OBSERVED OUTPUT labels which are actually 
 # equal to y = f(x) + e
 # where 'e' is the noise from the dataset as we've seen in '1. input features'
-# and these observed labels are called actual, true labels in practical ML because they are
+# and these observed labels are called actual, true, ground-truth labels in practical ML because they are
 # the target values we train against
 # |
-# but yes,
+# but yes, looking from a statistical point,
+# these ground-truth, true, actual, output, observed labels are NOT always perfectly related to y = f(x)
+# (that 'y' which is the ground-truth output of the ground-truth function)
+# because in dataset, these actual, true, observed labels are actuall noisy, inconsistent and hidden
+# variables that aren't captured by the input features we have
