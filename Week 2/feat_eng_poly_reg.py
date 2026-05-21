@@ -434,3 +434,49 @@ plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.y
 # NOTE:
 # relationship between x and y = x^2 --> non-linear/quadratic
 # so we engineer features ot make features and trg
+
+# FINAL UNDERSTANDING of ground truth function and approximation
+
+# say you're predicting house price using size of house
+
+# y = f(x) is the ground truth; 
+# - what this shows is that for THIS size of house, THIS is the house price for any size of house
+# (and inherent house price)
+# so there exists some underlying mechanism/process in nature or reality that relates to the size
+# of house (and price of house)
+# this y = f(x) does not necessarily mean it is something
+# 1. that is deterministic
+# 2. humans should already know
+# 3. simple
+# 4. with a neat equation
+
+# y = f(x) can be explained by physics, biology, economics
+
+# we know that these patterns exist - for some size of house x, there exists THIS right price y
+# and it is determined by physics, economics or nature sciences - but we won't necessarily know the
+# exact equation
+
+# for ANY valid input x, reality defines some output behavior.
+# The function exists over the ENTIRE input domain.
+
+# and our dataset is only a small subset of the ground truth function
+# why (let's see on the basis of input features and the associated labels y):
+
+# 1. input features
+# we cannot collect infinite data
+# - you cannot collect every size, every location, every year, every market condition and so on
+# - you can maybe collect a million examples but you're data will always
+# be TINY compared to reality's FULL space
+
+# the input data you collect is also inconsistent
+# - all input data always has
+# a. measurement errors
+# b. sensor inaccuracies
+# c. randomness
+# d. hidden variables
+# e. human inconsistency
+# (you get the point)
+
+# the input data does not capture all relevant features in reality
+# - this adds to point 1
+
