@@ -115,3 +115,14 @@ ax.set_xlabel('x', fontsize=12)
 
 
 plt.show()
+
+# NOTE: above, we're actually adding the loss as 'cost' and readding it to the variable
+# its actually loss for a single training example that we acumulate as cost finally (average of all
+# the losses for every tr. eg.)
+
+# but why: -y[i]*np.log(f_wb_i) - (1-y[i])*np.log(1-f_wb_i)
+# when true output label is 1, this ^^^^^^^^^^^^^^^^^^^^^^^ term will be made 0 as
+# 1 - 1 (i.e. y[i]) = 0 and (0)*np.log(1-f_wb_i) = 0 and finally, its just the first term we
+# will be looking at to see how well the prediction is when the true output label is actually 1
+# (we are TRAINING here, and we TRAIN THE MODEL WITH KNOWN OUTPUT LABELS, don't forget)
+
