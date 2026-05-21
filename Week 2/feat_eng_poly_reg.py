@@ -458,8 +458,17 @@ plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.y
 
 # for ANY valid input x, reality defines some output behavior.
 # The function exists over the ENTIRE input domain.
+# The true function defines outputs everywhere i.e. for every single input
 
-# and our dataset is only a small subset of the ground truth function
+# so if you had 2 features and associated labels y,
+# the ground truth function is y = f(x1, x2) and is defined for the entire possible 
+# space of those two features (infinte real values for these features exist)
+# so, for any valid combination of (x1, x2), reality defines some output behaviour
+
+# and our dataset is only a small subset of the ground truth function i.e.
+# only a small subset of the infinite, real-valued feature values that we're using for the model
+# and the ground truth function considered for these n features f(x1...xn) and the infinte values
+# for each feature
 # why (let's see on the basis of input features and the associated labels y):
 
 # 1. input features
@@ -480,3 +489,6 @@ plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.y
 # the input data does not capture all relevant features in reality
 # - this adds to point 1
 
+# 2. the output labels (in data)
+# these output labels are also associated with the inconsistent, finite input features x
+# and so these output labels are also considered only a small subset of reality/feature space
