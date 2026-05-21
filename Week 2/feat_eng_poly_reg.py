@@ -465,6 +465,10 @@ plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.y
 # space of those two features (infinte real values for these features exist)
 # so, for any valid combination of (x1, x2), reality defines some output behaviour
 
+# NOTE: also, yes, this ground-truth function y = f(x1, x2) from data of 2 features and associated labels
+# y also generalizes to new, unseen data because the unseen data is also in the same distribution as 
+# x1 and x2 - just not captured by the real world dataset we have 
+
 # and our dataset is only a small subset of the ground truth function i.e.
 # only a small subset of the infinite, real-valued feature values that we're using for the model
 # and the ground truth function considered for these n features f(x1...xn) and the infinte values
@@ -504,5 +508,22 @@ plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.y
 # because in dataset, these actual, true, observed labels are actuall noisy, inconsistent and are taken
 # as output wherein there are hidde variables, that aren't captured by the input features we have,
 # affecting this output
-# 
-#  
+
+# In practice, “true labels” usually means the observed labels in the dataset — even though statistically 
+# they may be noisy realizations of a deeper underlying process. 
+
+# we usually refer the labels provided in the dataset as our 'true output' labels
+# by convention
+# because we still need some kind of target, even if they're imperfect
+# these labels are treated as authoritative supervision because in S.L., we need some target
+# to learn from
+
+# We may never know the exact underlying clean function/process because we only observe finite, noisy, 
+# incomplete samples from reality, and the observed outputs already include randomness, hidden-variable 
+# effects, and uncertainty.
+
+# So y = f(x) is the function that predicts the true, reality output y for ANY valid input x (
+# infinite, real-valued)
+
+# you may never know what y = f(x) but we try to approximate to this, with our incomplete evidence
+# (dataset) - that's what ML is
