@@ -501,5 +501,8 @@ plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.y
 # but yes, looking from a statistical point,
 # these ground-truth, true, actual, output, observed labels are NOT always perfectly related to y = f(x)
 # (that 'y' which is the ground-truth output of the ground-truth function)
-# because in dataset, these actual, true, observed labels are actuall noisy, inconsistent and hidden
-# variables that aren't captured by the input features we have
+# because in dataset, these actual, true, observed labels are actuall noisy, inconsistent and are taken
+# as output wherein there are hidde variables, that aren't captured by the input features we have,
+# affecting this output
+# 
+#  
