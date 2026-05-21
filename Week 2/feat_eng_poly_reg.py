@@ -491,4 +491,11 @@ plt.plot(x,X@model_w + model_b, label="Predicted Value"); plt.xlabel("x"); plt.y
 
 # 2. the output labels (in data)
 # these output labels are also associated with the inconsistent, finite input features x
-# and so these output labels are also considered only a small subset of reality/feature space
+# and so these output labels are also considered only a small subset of reality/infinite feature space
+# in our dataset, these output labels are OBSERVED OUTPUT labels which are actually 
+# equal to y = f(x) + e
+# where 'e' is the noise from the dataset as we've seen in '1. input features'
+# and these observed labels are called actual, true labels in practical ML because they are
+# the target values we train against
+# |
+# but yes,
