@@ -66,4 +66,9 @@ def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
 
     cost = cost / (2*m)
 
+    reg_cost = 0
+
+    for j in range(n):
+        reg_cost += (w[j]**2)
     
+    reg_cost = (lambda_/(2*m)) * reg_cost
