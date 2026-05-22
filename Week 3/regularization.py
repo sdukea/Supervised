@@ -49,10 +49,11 @@ import matplotlib.pyplot as plt
 
 # cost functions with reg.
 
-# c.f. for reg. linear reg.
+# c.f. for regularized linear reg.
 
 def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
 
     m, n = X.shape
+
 
     
