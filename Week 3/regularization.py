@@ -14,5 +14,31 @@ import matplotlib.pyplot as plt
 # but also better ability to memorize noise
 # yeah, you also learn 'e' (epsilon) which is noise that cannot be predicted but exists no matter what
 
+# your tr. data is the only evidence your model has about the real world
+# but data is: limited, noisy and incomplete
+# with only a few examples, there is little-to-no evidence of the underlying pattern between our
+# feature values/vector vs target output
+
+# and because of this, a highly flexible model may start believing that the
+# random fluctuations/noise in the training data are the actual patterns
+# this happens because we do not yet have enough data/evidence
+# to reliably distinguish:
+# - true signal
+# - from random coincidence/noise
+
+# with only a small dataset, noise can accidentally look like
+# a meaningful pattern
+
+# but with much larger amounts of data:
+# - true patterns tend to appear consistently
+# - random noise becomes less consistent/statistically weaker
+
+# therefore, even when noise exists,
+# the underlying relationship becomes easier to detect
+
+# so more data helps the model separate:
+# signal vs noise
+
+
 # one way to think: overfitting = model complexity / amount of data
 
