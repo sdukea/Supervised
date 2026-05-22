@@ -53,7 +53,17 @@ import matplotlib.pyplot as plt
 
 def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
 
-    m, n = X.shape
+    m = X.shape[0]
 
+    n = len(w)
+
+    cost = 0
+
+    for i in range(m):
+        f_wb_i = np.dot(X[i], w) + b
+
+        cost = cost + (f_wb_i - y[i])**2
+
+    cost = cost / (2*m)
 
     
