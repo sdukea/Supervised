@@ -12,7 +12,6 @@ import matplotlib.pyplot as plt
 # More flexibility means:
 # better ability to capture complex real patterns
 # but also better ability to memorize noise
-# yeah, you also learn 'e' (epsilon) which is noise that cannot be predicted but exists no matter what
 
 # your tr. data is the only evidence your model has about the real world
 # but data is: limited, noisy and incomplete
@@ -40,5 +39,20 @@ import matplotlib.pyplot as plt
 # signal vs noise
 
 
+
 # one way to think: overfitting = model complexity / amount of data
 
+
+# –––
+
+# adding regularization
+
+# cost functions with reg.
+
+# c.f. for reg. linear reg.
+
+def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
+
+    m, n = X.shape
+
+    
