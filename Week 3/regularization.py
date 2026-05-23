@@ -154,12 +154,20 @@ def compute_cost_linear_reg(X, y, w, b, lambda_=1.0):
 # let's see this in action
 
 np.random.seed(1)
-X_tmp = np.random.rand(5,6)
-y_tmp = np.array([0,1,0,1,0])
-w_tmp = np.random.rand(X_tmp.shape[1]).reshape(-1,)-0.5
-b_tmp = 0.5
+
+X_tmp = np.random.rand(5, 6)
+# generate a 5 x 6 matrix filled with random numbers from 0 to 1
+# every re-run -> same numbers
+
+y_tmp = np.array([0, 1, 0, 1, 0])
+
+w_tmp = np.random.rand(X_tmp.shape[1]).reshape(-1) - 0.5
+# just a random way to get a set of parameters w1 to wn (as n = X_tmp.shape[1])
+
+b_tmp = 0.6
+
 lambda_tmp = 0.7
+
 cost_tmp = compute_cost_linear_reg(X_tmp, y_tmp, w_tmp, b_tmp, lambda_tmp)
 
-print("Regularized cost:", cost_tmp)
-
+print('Regularized cost:', cost_tmp)
