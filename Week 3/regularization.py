@@ -80,6 +80,11 @@ import matplotlib.pyplot as plt
 # larger weights for a specific feature, more the slope it has
 # and larger the slope, sharper the bends, more aggressive the feature influence
 
+# so extreme sensitvity, steep slopes and aggressive reactions are mathematically caused by 
+# very large weights - feature influence
+
+# and that's why we have to minimize them to stop overfitting
+
 
 # –––
 
@@ -104,6 +109,8 @@ def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
 
     cost = cost / (2*m)
 
+    # if prediction error is high, cost is high and hence we minimize cost
+
     reg_cost = 0
 
     for j in range(n):
@@ -111,8 +118,27 @@ def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
     
     reg_cost = (lambda_/(2*m)) * reg_cost
 
+    # if the weights for any feature is large, cost adds up and becomes high and hence we should
+    # minimze it (penalization)
+    
+    # so the optimization algorithm (G.D./Adam) shows us two goals:
+    # 1. predict correctly
+    # 2. keep weights small
+
+    # if w = [1, 2]
+    # penalty = 1^2 + 2^2 = 5
+    # smaller penalty, cost adds up slightly - showing chosen w is somewhat optimal
+
+    # but if w = [100, 200]
+    # penalty = 100^2 + 200^2 = 50000
+    # larger penalty, cost adds up by a lot - showing the chosen w is not optimal
+
+    # squaring the weights is exactly like squaring the pred. error of f_wb_x_i - y[i]
+    # Because we want the cost function to treat very large weights as dramatically worse 
+    # than moderately large weights
+    # and same for prediction error; the cost function should treat large prediction errors as
+    # dramatically worse than moderately large pred. errors
+
     total_cost = cost + reg_cost
 
     return total_cost
-
-
