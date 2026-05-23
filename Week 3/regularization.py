@@ -208,3 +208,8 @@ def compute_cost_log_reg(X, y, w, b, lambda_=1.0):
 
     return total_cost
 
+# see it in action
+
+log_cost_tmp = compute_cost_log_reg(X_tmp, y_tmp, w_tmp, b_tmp, lambda_tmp)
+
+print(log_cost_tmp)
