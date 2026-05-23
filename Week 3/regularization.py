@@ -139,6 +139,14 @@ def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
     # and same for prediction error; the cost function should treat large prediction errors as
     # dramatically worse than moderately large pred. errors
 
+    # you might think: why not just use the weight values by itself to penalize the
+    # if w = [-100, 100]
+    # then penalty = -100 + 100 = 0
+    # this shouldn't be the case
+    # that's why we square them to get the actual picture of penalty and added cost
+    # so that our optimization algorithm can evidently minimize cost
+    # (-100)^2 + 100^2 = gives you the actual picture of the penalty and cost that is added
+
     total_cost = cost + reg_cost
 
     return total_cost
