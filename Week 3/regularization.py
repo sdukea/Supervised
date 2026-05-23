@@ -38,14 +38,36 @@ import matplotlib.pyplot as plt
 # so more data helps the model separate:
 # signal vs noise
 
+# but NOTE: you're still trying to fit a complex, flexible model to this highly evident
+# data - you still have chances of overfitting
+# and that's why you have to reduce model complexity as well
+
 # one way to think: overfitting = model complexity / amount of data
 
 # so we can solve overfitting by increasing denominator as it reduces the amount of overfitting
 # (smaller denom., smaller overfitting)
+# |
 # and one more way is also to decrease numerator – decrease model complexity
 
 # and this is exactly what explains regularization
 
+# you have added more training examples to the data - that's cool
+# you now have an improved visibility of the signal
+# but this larger dataset still has noise/inconsistency/fluctuations
+
+# more data makes the underlying pattern/generalizable pattern easier to detect by
+# the model
+
+# but a highly flexible, complex model may STILL learn the noise/fluctations in this pattern-evident
+# data
+
+# so you have to ensure your model isn't complex
+
+# and that's why you regularize – you encourage the model to prefer smoother/simpler relationships
+# without trying to learn noise and only stick to signal/generalizable pattern in the data
+
+# more data: increases signal/more correct evidence
+# regularization: controls model complexity/flexibility
 
 # –––
 
@@ -80,3 +102,5 @@ def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
     total_cost = cost + reg_cost
 
     return total_cost
+
+
