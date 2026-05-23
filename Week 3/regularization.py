@@ -38,9 +38,13 @@ import matplotlib.pyplot as plt
 # so more data helps the model separate:
 # signal vs noise
 
-
-
 # one way to think: overfitting = model complexity / amount of data
+
+# so we can solve overfitting by increasing denominator as it reduces the amount of overfitting
+# (smaller denom., smaller overfitting)
+# and one more way is also to decrease numerator – decrease model complexity
+
+# and this is exactly what explains regularization
 
 
 # –––
