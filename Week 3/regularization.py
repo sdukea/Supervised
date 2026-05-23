@@ -69,6 +69,18 @@ import matplotlib.pyplot as plt
 # more data: increases signal/more correct evidence
 # regularization: controls model complexity/flexibility
 
+# and you reduce model complexity by reducing the impact of parameters w1 to wn
+# essentially, we penalize/regularize the model if associated parameters are huge - we minimize the size
+# of these parameters close to 0
+
+# larger weights: feature is important
+# lower weights: feature is not important
+
+# so, weights -> gradients (when illustrated in graphs)
+# larger weights for a specific feature, more the slope it has
+# and larger the slope, sharper the bends, more aggressive the feature influence
+
+
 # –––
 
 # adding regularization
@@ -86,9 +98,9 @@ def compute_cost_linear_reg(X, y, w, b, lambda_ = 1):
     cost = 0
 
     for i in range(m):
-        f_wb_i = np.dot(X[i], w) + b
+        f_wb_i_vec = np.dot(X[i], w) + b
 
-        cost = cost + (f_wb_i - y[i])**2
+        cost = cost + (f_wb_i_vec - y[i])**2
 
     cost = cost / (2*m)
 
