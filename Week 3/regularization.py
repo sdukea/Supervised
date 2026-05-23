@@ -171,3 +171,40 @@ lambda_tmp = 0.7
 cost_tmp = compute_cost_linear_reg(X_tmp, y_tmp, w_tmp, b_tmp, lambda_tmp)
 
 print('Regularized cost:', cost_tmp)
+
+# c.f. for regularized logistic regression
+
+def sigmoid(z):
+
+    g_z = 1 / (1 + np.exp(-z))
+
+    return g_z
+
+def compute_cost_log_reg(X, y, w, b, lambda_=1.0):
+
+    m, n = X.shape
+
+    cost = 0
+
+    for i in range(m):
+
+        z_i = np.dot(X[i], w) + b
+
+        f_wb_i = sigmoid(z_i)
+
+        cost += -y[i]*np.log(f_wb_i) - (1-y[i])*np.log(1 - f_wb_i)
+
+    cost = cost / (2*m)
+
+    reg_cost = 0
+
+    for j in range(n):
+
+        reg_cost += (w[j]**2)
+    
+    reg_cost = (lambda_/(2*m)) * reg_cost
+
+    total_cost = cost + reg_cost
+
+    return total_cost
+
