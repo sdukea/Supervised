@@ -325,7 +325,7 @@ def compute_gradient_log_reg(X, y, w, b, lambda_):
 
     dj_dw = np.zeros((n,))
 
-    dj_db = 0
+    dj_db = 0.0
 
     for i in range(m):
         z_i = np.dot(X[i], w) + b
@@ -338,6 +338,15 @@ def compute_gradient_log_reg(X, y, w, b, lambda_):
             dj_dw[j] = dj_dw[j] + error * X[i, j]
 
         dj_db += error
-    
+
+    dj_dw = dj_dw / m
+    dj_db = dj_db / m
+
     # done for the first term; prediction error
+
+    for j in range(n):
+
+        dj_dw[j] = dj_dw[j] + (lambda_/m) * w[j]
+
+    return dj_db, dj_dw
 
