@@ -212,4 +212,21 @@ def compute_cost_log_reg(X, y, w, b, lambda_=1.0):
 
 log_cost_tmp = compute_cost_log_reg(X_tmp, y_tmp, w_tmp, b_tmp, lambda_tmp)
 
-print(log_cost_tmp)
+print(f"Regularized cost (logistic): {log_cost_tmp}")
+
+# gradient descent for regularized linear regression
+
+# g.d. for reg. linear regression is around this idea
+
+# J = prediction error + regularization penalty
+
+# now, when you differentiate it, you get
+
+#       (first term)                 (second term)
+# = d(prediction error)/dwj + d(regularization penalty)/dwj
+
+# so you have the new addition ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+# the first term says: change wj to fit the data better
+
+# the second term says: reduce wj if its large
