@@ -311,3 +311,8 @@ def compute_gradient_linear_reg(X, y, w, b, lambda_):
 
     return dj_db, dj_dw
 
+
+dj_db_tmp, dj_dw_tmp = compute_gradient_linear_reg(X_tmp, y_tmp, w_tmp, b_tmp, lambda_tmp)
+
+print(dj_db_tmp, dj_dw_tmp)
+
