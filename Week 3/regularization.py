@@ -275,3 +275,39 @@ print(f"Regularized cost (logistic): {log_cost_tmp}")
 
 # I am willing to accept a slightly worse fit to the training data if it gives me a 
 # simpler model that generalizes better.
+
+# Overfitting happens precisely because the model is sometimes too focused on 
+# fitting the training data - that's why we take its attention away from just trying to
+# reduce pred. error on each tr. eg. and fit the training data well to reduce the size of
+# parameters and produce a simpler, smoother model
+
+# that's the idea
+
+def compute_gradient_linear_reg(X, y, w, b, lambda_):
+
+    m, n = X.shape
+
+    dj_dw = np.zeros((n,))
+    dj_db = 0
+
+    for i in range(m):
+
+        pred = np.dot(X[i], w) + b
+
+        error = (pred - y[i])**2
+
+        for j in range(n):
+
+            dj_dw[j] = dj_dw[j] + error * X[i, j]
+
+        dj_db += error
+    
+    dj_dw = dj_dw / m
+    dj_db = dj_db / m
+
+    for j in range(n):
+
+        dj_dw[j] = dj_dw[j] + (lambda_/m) * w[j]
+
+    return dj_db, dj_dw
+
