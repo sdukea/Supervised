@@ -222,7 +222,7 @@ print(f"Regularized cost (logistic): {log_cost_tmp}")
 
 # now, when you differentiate it, you get
 
-#       (first term)                 (second term)
+#  (first term/usual gradient)       (second term)
 # = d(prediction error)/dwj + d(regularization penalty)/dwj
 
 # so you have the new addition ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -230,3 +230,48 @@ print(f"Regularized cost (logistic): {log_cost_tmp}")
 # the first term says: change wj to fit the data better
 
 # the second term says: reduce wj if its large
+
+# Both terms modify the same parameter(s) w (w1 to wn) for different
+# objectives
+
+# without regularization: the only thing wj is aimed at is to fit data better
+# this can easily result in overfitting because the only goal for the model is to fit
+# data better/reduce prediction error for every training example
+
+# say w1 = 10, a = 0.1, lambda = 2, m = 100 (an example)
+# also, say usual gradient = -5
+
+# normal update => w1 = w1 - alpha * usual gradient
+#                     = 10 - 0.1(-5)
+#                     = 10.5
+
+# the weight value has increased so as to fit the training data well - reduce prediction error
+
+# now, this is fine, but again - this is prone to overfitting as you are only
+# trying to fit the training data - reduce pred. error for all points/learn noise
+# this introduces overfitting and the only way you can reduce this is to
+
+# regularize - reduce impact of features
+# i.e. to prioritize reducing the size of parameters
+
+# say m = 100
+
+# second term = lambda * (w1/m) = 2 * (10/100) = 0.2
+
+# total gradient = usual gradient + second term
+#                = -5 + 0.2 = -4.8
+
+# regularized update => w1 = w1 - total gradient
+#                          = 10 - 0.1(-4.8)
+#                          = 10.48
+
+# what you've done now:
+# 1. you have made the model fit the training data to a good extent so that it does not overfit/
+# generalizes better/does not learn noise
+# 2. prioritized reducing the size of parameters so as to reduce overfitting
+
+# You will have to priortize both
+# and that is the tradeoff regularization intentionally creates
+
+# I am willing to accept a slightly worse fit to the training data if it gives me a 
+# simpler model that generalizes better.
