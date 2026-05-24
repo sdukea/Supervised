@@ -316,3 +316,15 @@ dj_db_tmp, dj_dw_tmp = compute_gradient_linear_reg(X_tmp, y_tmp, w_tmp, b_tmp, l
 
 print(dj_db_tmp, dj_dw_tmp)
 
+# gradient descent for regularized logistic regression
+
+def compute_gradient_log_reg(X, y, w, b, lambda_):
+
+    m, n = X.shape
+
+    dj_dw = np.zeros((n,))
+
+    dj_db = 0
+
+    for i in range(m):
+        pass
