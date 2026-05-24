@@ -318,6 +318,7 @@ print(dj_db_tmp, dj_dw_tmp)
 
 # gradient descent for regularized logistic regression
 
+
 def compute_gradient_log_reg(X, y, w, b, lambda_):
 
     m, n = X.shape
@@ -327,4 +328,5 @@ def compute_gradient_log_reg(X, y, w, b, lambda_):
     dj_db = 0
 
     for i in range(m):
-        pass
+        z_i = np.dot(X[i], w) + b
+
