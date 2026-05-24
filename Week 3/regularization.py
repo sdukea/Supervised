@@ -330,3 +330,14 @@ def compute_gradient_log_reg(X, y, w, b, lambda_):
     for i in range(m):
         z_i = np.dot(X[i], w) + b
 
+        f_wb_x_i = sigmoid(z_i)
+
+        error = (f_wb_x_i - y[i])**2
+
+        for j in range(n):
+            dj_dw[j] = dj_dw[j] + error * X[i, j]
+
+        dj_db += error
+    
+    # done for the first term; prediction error
+
